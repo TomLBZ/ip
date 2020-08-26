@@ -3,6 +3,10 @@ import java.util.Scanner;
 
 public class Duke {
 
+    //This method is used to generate a block of text from an array of strings
+    //with a long dashed line at its top and bottom each.
+    //isIndexed is used to toggle whether this is a list with list number or just
+    //a normal block of text.
     private static String addFormatLines(String[] messages, boolean isIndexed){
         String strLine = "\t____________________________________________________________\n";
         StringBuilder innerMessage = new StringBuilder();
@@ -20,6 +24,7 @@ public class Duke {
         return strLine + innerMessage + strLine;
     }
 
+    //This method is an overload of the one above for easier use with a single string.
     private static String addFormatLines(String message){
         String strLine = "\t____________________________________________________________\n";
         return strLine + "\t" + message + "\n" + strLine;
