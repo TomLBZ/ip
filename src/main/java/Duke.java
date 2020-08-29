@@ -3,70 +3,101 @@ import java.util.Scanner;
 
 public class Duke {
 
-    //This method is used to generate a block of text from an array of strings
-    //with a long dashed line at its top and bottom each.
-    //isIndexed is used to toggle whether this is a list with list number or just
-    //a normal block of text.
-    private static String addFormatLines(String[] messages, boolean isIndexed){
-        String strLine = "\t____________________________________________________________\n";
-        StringBuilder innerMessage = new StringBuilder();
-        if(isIndexed){
-            innerMessage.append("\tHere are the tasks in your list:\n");
+    public static String[] getCommandStrings(ArrayList<Task> tasks){
+        String[] commands = new String[tasks.size()];
+        for(int i = 0; i < tasks.size(); i++){
+            commands[i] = tasks.get(i).toString();
         }
-        for (int i = 0; i < messages.length; i++) {
-            if(isIndexed){
-                innerMessage.append("\t").append(i + 1).append(".").append(messages[i]).append("\n");
-            }
-            else{
-                innerMessage.append("\t").append(messages[i]).append("\n");
-            }
-        }
-        return strLine + innerMessage + strLine;
+        return commands;
     }
 
-    //This method is an overload of the one above for easier use with a single string.
-    private static String addFormatLines(String message){
-        String strLine = "\t____________________________________________________________\n";
-        return strLine + "\t" + message + "\n" + strLine;
+    private static String[] getAddTaskMessage(String description, int count){
+        String[] message = new String[]{
+                "Got it. I've added this task",
+                description,
+                "Now you have " + count + " tasks in the list."
+        };
+        return message;
     }
 
     public static void main(String[] args) {
+        MessageFormat msgFormat = new MessageFormat(new MessageOptions[]{
+                MessageOptions.LINE_INDENT_1,
+                MessageOptions.LINE_BEFORE,
+                MessageOptions.INDENTED_2,
+                MessageOptions.AUTO_RETURN,
+                MessageOptions.LINE_AFTER
+        });
+        CommandParser commandParser = new CommandParser();
+        MessageWrapper messageWrapper = new MessageWrapper(60,"_");
         Scanner userInputGetter = new Scanner(System.in);
-        String[] greetings = new String[] {" Hello! I'm Duke", " What can I do for you?"};
+        String[] greetings = new String[] {
+                " Hello! I'm Duke",
+                " What can I do for you?"
+        };
         String bye = " Bye. Hope to see you again soon!";
-        System.out.print(addFormatLines(greetings, false));
+        messageWrapper.show(greetings, msgFormat.getMessageOptions());
         ArrayList<Task> addedTasks = new ArrayList<>();
-        boolean running = true;
-        while (running) {
+        boolean isRunning = true;
+        while (isRunning) {
             String userInput = userInputGetter.nextLine();
-            switch (userInput) {
-            case "list":
-                String[] commands = new String[addedTasks.size()];
-                for(int i = 0; i < commands.length; i++){
-                    commands[i] = addedTasks.get(i).toString();
-                }
-                System.out.print(addFormatLines(commands, true));
+            commandParser.Parse(userInput);
+            switch (commandParser.getFlag()) {
+            case LIST:
+                String[] commands = getCommandStrings(addedTasks);
+                msgFormat.addMessageOption(MessageOptions.INDEXED_NUM);
+                messageWrapper.show(commands, msgFormat.getMessageOptions());
+                msgFormat.removeMessageOption(MessageOptions.INDEXED_NUM);
                 break;
-            case "bye":
-                System.out.print(addFormatLines(bye));
-                running = false;
+            case BYE:
+                messageWrapper.show(bye, msgFormat.getMessageOptions());
+                isRunning = false;
+                break;
+            case DONE:
+                int index = Integer.parseInt(commandParser.getParameter()) - 1;
+                Task task = addedTasks.get(index);
+                if (task == null) break;
+                task.markAsDone();
+                messageWrapper.show(new String[]{
+                        "Nice! I've marked this task as done:",
+                        task.toString()
+                }, msgFormat.getMessageOptions());
+                break;
+            case UNDONE:
+                int indexDone = Integer.parseInt(commandParser.getParameter()) - 1;
+                Task taskDone = addedTasks.get(indexDone);
+                if (taskDone == null) break;
+                taskDone.markAsUndone();
+                messageWrapper.show(new String[]{
+                        "Nice! I've marked this task as undone:",
+                        taskDone.toString()
+                }, msgFormat.getMessageOptions());
+                break;
+            case TODO:
+                ToDo todo = new ToDo(userInput);
+                addedTasks.add(todo);
+                messageWrapper.show(
+                        getAddTaskMessage(todo.toString(), addedTasks.size()),
+                        msgFormat.getMessageOptions());
+                break;
+            case DEADLINE:
+                Deadline ddl = new Deadline(userInput);
+                addedTasks.add(ddl);
+                messageWrapper.show(
+                        getAddTaskMessage(ddl.toString(), addedTasks.size()),
+                        msgFormat.getMessageOptions());
+                break;
+            case EVENT:
+                Event event = new Event(userInput);
+                addedTasks.add(event);
+                messageWrapper.show(
+                        getAddTaskMessage(event.toString(), addedTasks.size()),
+                        msgFormat.getMessageOptions());
                 break;
             default:
-                if(userInput.contains("done")){
-                    int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
-                    if(index >= 0 && index < addedTasks.size()){
-                        addedTasks.get(index).markAsDone();
-                        System.out.print(addFormatLines("Nice! I've marked this task as done:\n\t\t" +
-                                addedTasks.get(index).toString()));
-                    }
-                    else{
-                        System.out.print(addFormatLines("Index specified is out of range."));
-                    }
-                }
-                else{
-                    addedTasks.add(new Task(userInput));
-                    System.out.print(addFormatLines("added: " + userInput));
-                }
+                String defaultMessage = "added: " + userInput;
+                addedTasks.add(new Task(userInput));
+                messageWrapper.show(defaultMessage, msgFormat.getMessageOptions());
                 break;
             }
         }

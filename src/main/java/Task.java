@@ -1,16 +1,23 @@
 public class Task {
+    protected String rawDescription;
     protected String description;
     protected boolean isDone;
 
-    public Task(String description){
-        this.description = description;
+    public Task(String rawDescription){
+        this.rawDescription = rawDescription;
         this.isDone = false;
+        updateDescription();
+    }
+
+    protected void updateDescription(){
+        description = rawDescription;
     }
 
     public String getStatusIcon(){
         return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
     }
 
+    @Override
     public String toString(){
         return "[" + getStatusIcon() + "] " + description;
     }
