@@ -6,11 +6,12 @@ public class ToDo extends Task {
 
     @Override
     protected void updateDescription(){
-        this.description = this.rawDescription.replace(Constants.TODO_CMD, "").trim();
+        this.description = this.rawDescription.replace(
+                Constants.TODO_CMD, Constants.ZERO_LENGTH_STRING).trim();
     }
 
     @Override
     public String toString(){
-        return "[T]" + super.toString();
+        return Constants.TODO_ICON + super.toString();
     }
 }

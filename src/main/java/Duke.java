@@ -12,12 +12,11 @@ public class Duke {
     }
 
     private static String[] getAddTaskMessage(String description, int count){
-        String[] message = new String[]{
+        return new String[]{
                 "Got it. I've added this task",
                 description,
                 "Now you have " + count + " tasks in the list."
         };
-        return message;
     }
 
     public static void main(String[] args) {
@@ -28,47 +27,52 @@ public class Duke {
                 MessageOptions.AUTO_RETURN,
                 MessageOptions.LINE_AFTER
         });
-        CommandParser commandParser = new CommandParser();
-        MessageWrapper messageWrapper = new MessageWrapper(60,"_");
-        Scanner userInputGetter = new Scanner(System.in);
+        CommandParser cmdParser = new CommandParser();
+        MessageWrapper msgWrapper = new MessageWrapper(
+                Constants.LINE_REPETITION, Constants.LINE_UNIT);
+        Scanner inputGetter = new Scanner(System.in);
         String[] greetings = new String[] {
                 " Hello! I'm Duke",
                 " What can I do for you?"
         };
         String bye = " Bye. Hope to see you again soon!";
-        messageWrapper.show(greetings, msgFormat.getMessageOptions());
+        msgWrapper.show(greetings, msgFormat.getMessageOptions());
         ArrayList<Task> addedTasks = new ArrayList<>();
         boolean isRunning = true;
         while (isRunning) {
-            String userInput = userInputGetter.nextLine();
-            commandParser.Parse(userInput);
-            switch (commandParser.getFlag()) {
+            String userInput = inputGetter.nextLine();
+            cmdParser.parse(userInput);
+            switch (cmdParser.getFlag()) {
             case LIST:
                 String[] commands = getCommandStrings(addedTasks);
                 msgFormat.addMessageOption(MessageOptions.INDEXED_NUM);
-                messageWrapper.show(commands, msgFormat.getMessageOptions());
+                msgWrapper.show(commands, msgFormat.getMessageOptions());
                 msgFormat.removeMessageOption(MessageOptions.INDEXED_NUM);
                 break;
             case BYE:
-                messageWrapper.show(bye, msgFormat.getMessageOptions());
+                msgWrapper.show(bye, msgFormat.getMessageOptions());
                 isRunning = false;
                 break;
             case DONE:
-                int index = Integer.parseInt(commandParser.getParameter()) - 1;
+                int index = Integer.parseInt(cmdParser.getParameter()) - 1;
                 Task task = addedTasks.get(index);
-                if (task == null) break;
+                if (task == null) {
+                    break;
+                }
                 task.markAsDone();
-                messageWrapper.show(new String[]{
+                msgWrapper.show(new String[]{
                         "Nice! I've marked this task as done:",
                         task.toString()
                 }, msgFormat.getMessageOptions());
                 break;
             case UNDONE:
-                int indexDone = Integer.parseInt(commandParser.getParameter()) - 1;
+                int indexDone = Integer.parseInt(cmdParser.getParameter()) - 1;
                 Task taskDone = addedTasks.get(indexDone);
-                if (taskDone == null) break;
+                if (taskDone == null) {
+                    break;
+                }
                 taskDone.markAsUndone();
-                messageWrapper.show(new String[]{
+                msgWrapper.show(new String[]{
                         "Nice! I've marked this task as undone:",
                         taskDone.toString()
                 }, msgFormat.getMessageOptions());
@@ -76,28 +80,28 @@ public class Duke {
             case TODO:
                 ToDo todo = new ToDo(userInput);
                 addedTasks.add(todo);
-                messageWrapper.show(
+                msgWrapper.show(
                         getAddTaskMessage(todo.toString(), addedTasks.size()),
                         msgFormat.getMessageOptions());
                 break;
             case DEADLINE:
                 Deadline ddl = new Deadline(userInput);
                 addedTasks.add(ddl);
-                messageWrapper.show(
+                msgWrapper.show(
                         getAddTaskMessage(ddl.toString(), addedTasks.size()),
                         msgFormat.getMessageOptions());
                 break;
             case EVENT:
                 Event event = new Event(userInput);
                 addedTasks.add(event);
-                messageWrapper.show(
+                msgWrapper.show(
                         getAddTaskMessage(event.toString(), addedTasks.size()),
                         msgFormat.getMessageOptions());
                 break;
             default:
                 String defaultMessage = "added: " + userInput;
                 addedTasks.add(new Task(userInput));
-                messageWrapper.show(defaultMessage, msgFormat.getMessageOptions());
+                msgWrapper.show(defaultMessage, msgFormat.getMessageOptions());
                 break;
             }
         }

@@ -9,7 +9,7 @@ public class Deadline extends Task {
     @Override
     protected void updateDescription(){
         this.description = this.rawDescription.split(Constants.DDL_SIGN)[0];
-        this.description = this.description.replace(Constants.DDL_CMD, "");
+        this.description = this.description.replace(Constants.DDL_CMD, Constants.ZERO_LENGTH_STRING);
         this.description = this.description.trim();
     }
 
@@ -19,12 +19,12 @@ public class Deadline extends Task {
             return splitDescription[1];
         }
         else {
-            return "";
+            return Constants.ZERO_LENGTH_STRING;
         }
     }
 
     @Override
     public String toString(){
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return Constants.DDL_ICON + super.toString() + " (by: " + by + ")";
     }
 }

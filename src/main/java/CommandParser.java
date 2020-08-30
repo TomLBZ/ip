@@ -4,15 +4,15 @@ public class CommandParser {
 
     public CommandParser(){
         flag = Commands.UNKNOWN;
-        parameter = "";
+        parameter = Constants.ZERO_LENGTH_STRING;
     }
 
-    public void Parse(String rawInput){
+    public void parse(String rawInput){
         if (rawInput == null) return;
-        String[] input = rawInput.split(" ");
+        String[] input = rawInput.split(Constants.SPACE);
         updateFlag(input[0]);
         if (flag == Commands.DEADLINE || flag == Commands.EVENT ||
-            flag == Commands.DONE || flag == Commands.UNDONE){
+                flag == Commands.DONE || flag == Commands.UNDONE){
             String commandSign = getCommandSign(flag);
             if(rawInput.contains(commandSign)){
                 parameter = rawInput.split(commandSign)[1].trim();
@@ -22,7 +22,7 @@ public class CommandParser {
             }
         }
         else {
-            parameter = "";
+            parameter = Constants.ZERO_LENGTH_STRING;
         }
     }
 
@@ -45,7 +45,7 @@ public class CommandParser {
         case UNDONE:
             return Constants.UNDONE_CMD;
         default:
-            return "";
+            return Constants.ZERO_LENGTH_STRING;
         }
     }
 

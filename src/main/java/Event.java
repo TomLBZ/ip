@@ -9,7 +9,7 @@ public class Event extends Task{
     @Override
     protected void updateDescription(){
         this.description = this.rawDescription.split(Constants.EVENT_SIGN)[0];
-        this.description = this.description.replace(Constants.EVENT_CMD, "");
+        this.description = this.description.replace(Constants.EVENT_CMD, Constants.ZERO_LENGTH_STRING);
         this.description = this.description.trim();
     }
 
@@ -19,13 +19,12 @@ public class Event extends Task{
             return splitDescription[1];
         }
         else {
-            return "";
+            return Constants.ZERO_LENGTH_STRING;
         }
     }
 
     @Override
     public String toString(){
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        return Constants.EVENT_ICON + super.toString() + " (at: " + at + ")";
     }
-
 }

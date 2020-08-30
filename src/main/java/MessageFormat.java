@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MessageFormat {
-    private ArrayList<MessageOptions> messageOptionsList;
+    private final ArrayList<MessageOptions> messageOptionsList;
 
     public MessageFormat(MessageOptions[] options){
         messageOptionsList = new ArrayList<>(Arrays.asList(options));
