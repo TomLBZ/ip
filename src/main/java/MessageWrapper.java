@@ -51,11 +51,9 @@ public class MessageWrapper {
     private int getLineIndent(MessageOptions[] options){
         if (Arrays.asList(options).contains(MessageOptions.LINE_INDENT_1)){
             return Constants.INDENT_1;
-        }
-        else if (Arrays.asList(options).contains(MessageOptions.LINE_INDENT_2)){
+        } else if (Arrays.asList(options).contains(MessageOptions.LINE_INDENT_2)){
             return Constants.INDENT_2;
-        }
-        else if (Arrays.asList(options).contains(MessageOptions.LINE_INDENT_3)){
+        } else if (Arrays.asList(options).contains(MessageOptions.LINE_INDENT_3)){
             return Constants.INDENT_3;
         }
         return Constants.NO_INDENT;
@@ -64,11 +62,9 @@ public class MessageWrapper {
     private int getTextIndent(MessageOptions[] options){
         if (Arrays.asList(options).contains(MessageOptions.INDENTED_1)){
             return Constants.INDENT_1;
-        }
-        else if (Arrays.asList(options).contains(MessageOptions.INDENTED_2)){
+        } else if (Arrays.asList(options).contains(MessageOptions.INDENTED_2)){
             return Constants.INDENT_2;
-        }
-        else if (Arrays.asList(options).contains(MessageOptions.INDENTED_3)){
+        } else if (Arrays.asList(options).contains(MessageOptions.INDENTED_3)){
             return Constants.INDENT_3;
         }
         return Constants.NO_INDENT;
@@ -77,11 +73,10 @@ public class MessageWrapper {
     private MessageOptions getIndexOption(MessageOptions[] options){
         if (Arrays.asList(options).contains(MessageOptions.INDEXED_NUM)){
             return MessageOptions.INDEXED_NUM;
-        }
-        else if (Arrays.asList(options).contains(MessageOptions.INDEXED_ABC)){
+        } else if (Arrays.asList(options).contains(MessageOptions.INDEXED_ABC)){
             return MessageOptions.INDEXED_ABC;
         }
-        else return MessageOptions.NOT_INDEXED;
+        return MessageOptions.NOT_INDEXED;
     }
 
     private String buildLine(int lineIndent, String lineBase){
@@ -95,8 +90,7 @@ public class MessageWrapper {
         if(index > 0){
             if(indexOption == MessageOptions.INDEXED_NUM){
                 formattedMessage += index + Constants.DOT;
-            }
-            else if (indexOption == MessageOptions.INDEXED_ABC){
+            } else if (indexOption == MessageOptions.INDEXED_ABC){
                 formattedMessage += (char)(index +
                         Constants.LETTER_OFFSET) + Constants.DOT;
             }

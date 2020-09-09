@@ -36,13 +36,39 @@ public class Duke {
                 " What can I do for you?"
         };
         String bye = " Bye. Hope to see you again soon!";
+        String unknown = "x_x OOPS!!! I'm sorry, but I don't know what that means :-(";
+        String illegal = "x_x OOPS!!! The \"_SIGN_\" parameter of the _NAME_ command is missing.";
+        String empty = "x_x OOPS!!! The parameter \"_SIGN_\" cannot be empty.";
+        String missing = "x_x OOPS!!! The description of the \"_NAME_\" command cannot be empty.";
         msgWrapper.show(greetings, msgFormat.getMessageOptions());
         ArrayList<Task> addedTasks = new ArrayList<>();
         boolean isRunning = true;
         while (isRunning) {
             String userInput = inputGetter.nextLine();
-            cmdParser.parse(userInput);
-            switch (cmdParser.getFlag()) {
+            Commands flag;
+            Commands originalFlag;
+            try {
+                cmdParser.parse(userInput);
+                flag = cmdParser.getFlag();
+                originalFlag = flag;
+            }
+            catch (EmptyCommandException e){
+                flag = Commands.EMPTY;
+                originalFlag = e.flag;
+            }
+            catch (IllegalCommandException i){
+                flag = Commands.ILLEGAL;
+                originalFlag = i.flag;
+            }
+            catch (MissingDescriptionException m){
+                flag = Commands.MISSING;
+                originalFlag = m.flag;
+            }
+            catch (UnknownCommandException u){
+                flag = Commands.UNKNOWN;
+                originalFlag = flag;
+            }
+            switch (flag) {
             case LIST:
                 String[] commands = getCommandStrings(addedTasks);
                 msgFormat.addMessageOption(MessageOptions.INDEXED_NUM);
@@ -98,10 +124,29 @@ public class Duke {
                         getAddTaskMessage(event.toString(), addedTasks.size()),
                         msgFormat.getMessageOptions());
                 break;
+            case UNKNOWN:
+                msgWrapper.show(unknown, msgFormat.getMessageOptions());
+                break;
+            case ILLEGAL:
+                String iMessage = illegal.replace(
+                        "_SIGN_", originalFlag.SIGN.trim());
+                iMessage = iMessage.replace(
+                        "_NAME_", originalFlag.NAME.trim());
+                msgWrapper.show(iMessage, msgFormat.getMessageOptions());
+                break;
+            case EMPTY:
+                String eMessage = "";
+                eMessage = empty.replace("_SIGN_",
+                        originalFlag.SIGN.trim());
+                msgWrapper.show(eMessage, msgFormat.getMessageOptions());
+                break;
+            case MISSING:
+                String mMessage = "";
+                mMessage = missing.replace("_NAME_",
+                        originalFlag.NAME.trim());
+                msgWrapper.show(mMessage, msgFormat.getMessageOptions());
+                break;
             default:
-                String defaultMessage = "added: " + userInput;
-                addedTasks.add(new Task(userInput));
-                msgWrapper.show(defaultMessage, msgFormat.getMessageOptions());
                 break;
             }
         }

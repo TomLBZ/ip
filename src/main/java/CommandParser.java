@@ -7,22 +7,40 @@ public class CommandParser {
         parameter = Constants.ZERO_LENGTH_STRING;
     }
 
-    public void parse(String rawInput){
+    public void parse(String rawInput) throws
+            EmptyCommandException, IllegalCommandException,
+            UnknownCommandException, MissingDescriptionException{
         if (rawInput == null) return;
         String[] input = rawInput.split(Constants.SPACE);
         updateFlag(input[0]);
-        if (flag == Commands.DEADLINE || flag == Commands.EVENT ||
-                flag == Commands.DONE || flag == Commands.UNDONE){
-            String commandSign = getCommandSign(flag);
-            if(rawInput.contains(commandSign)){
-                parameter = rawInput.split(commandSign)[1].trim();
+        parameter = Constants.ZERO_LENGTH_STRING;
+        if (flag.isNeedParameter()){
+            if(rawInput.contains(flag.SIGN)){
+                String[] splitInput = rawInput.split(flag.SIGN);
+                if (splitInput.length < 2) {
+                    throw new EmptyCommandException(flag);
+                }
+                parameter = splitInput[1].trim();
+                if (parameter.equals(Constants.ZERO_LENGTH_STRING)) {
+                    throw new EmptyCommandException(flag);
+                }
+                String description = splitInput[0].replace(flag.NAME,
+                        Constants.ZERO_LENGTH_STRING).trim();
+                if (description.equals(Constants.ZERO_LENGTH_STRING)){
+                    throw new MissingDescriptionException(flag);
+                }
+            } else {
+                throw new IllegalCommandException(flag);
             }
-            else {
-                flag = Commands.ILLEGAL;
+        } else if (flag.isNeedTarget()){
+            String target = rawInput.replace(flag.NAME,
+                    Constants.ZERO_LENGTH_STRING).trim();
+            if (target.equals(Constants.ZERO_LENGTH_STRING)) {
+                throw new MissingDescriptionException(flag);
             }
-        }
-        else {
-            parameter = Constants.ZERO_LENGTH_STRING;
+            parameter = target;
+        } else if (flag.isExceptional()){
+            throw new UnknownCommandException();
         }
     }
 
@@ -31,50 +49,17 @@ public class CommandParser {
     }
 
     public String getParameter(){
-        return parameter;
+        return parameter.trim();
     }
 
-    private String getCommandSign(Commands command){
-        switch (command){
-        case DEADLINE:
-            return Constants.DDL_SIGN;
-        case EVENT:
-            return Constants.EVENT_SIGN;
-        case DONE:
-            return Constants.DONE_CMD;
-        case UNDONE:
-            return Constants.UNDONE_CMD;
-        default:
-            return Constants.ZERO_LENGTH_STRING;
+    private void updateFlag(String command) throws UnknownCommandException{
+        Commands[] commandValues = Commands.values();
+        for (Commands cmdValue: commandValues) {
+            if (command.equals(cmdValue.NAME)) {
+                flag = cmdValue;
+                return;
+            }
         }
-    }
-
-    private void updateFlag(String command){
-        switch (command){
-        case Constants.LIST_CMD:
-            flag = Commands.LIST;
-            break;
-        case Constants.BYE_CMD:
-            flag = Commands.BYE;
-            break;
-        case Constants.DONE_CMD:
-            flag = Commands.DONE;
-            break;
-        case Constants.UNDONE_CMD:
-            flag = Commands.UNDONE;
-            break;
-        case Constants.TODO_CMD:
-            flag = Commands.TODO;
-            break;
-        case Constants.DDL_CMD:
-            flag = Commands.DEADLINE;
-            break;
-        case Constants.EVENT_CMD:
-            flag = Commands.EVENT;
-            break;
-        default:
-            flag = Commands.UNKNOWN;
-            break;
-        }
+        throw new UnknownCommandException(); //break is unreachable
     }
 }
