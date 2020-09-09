@@ -7,7 +7,7 @@ public class ToDo extends Task {
     @Override
     protected void updateDescription(){
         this.description = this.rawDescription.replace(
-                Constants.TODO_CMD, Constants.ZERO_LENGTH_STRING).trim();
+                Commands.TODO.NAME, Constants.ZERO_LENGTH_STRING).trim();
     }
 
     @Override

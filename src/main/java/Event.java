@@ -8,13 +8,13 @@ public class Event extends Task{
 
     @Override
     protected void updateDescription(){
-        this.description = this.rawDescription.split(Constants.EVENT_SIGN)[0];
-        this.description = this.description.replace(Constants.EVENT_CMD, Constants.ZERO_LENGTH_STRING);
+        this.description = this.rawDescription.split(Commands.EVENT.SIGN)[0];
+        this.description = this.description.replace(Commands.EVENT.NAME, Constants.ZERO_LENGTH_STRING);
         this.description = this.description.trim();
     }
 
     private String timing(){
-        String[] splitDescription = rawDescription.split(Constants.EVENT_SIGN);
+        String[] splitDescription = rawDescription.split(Commands.EVENT.SIGN);
         if (splitDescription.length > 1){
             return splitDescription[1];
         } else {

@@ -8,13 +8,13 @@ public class Deadline extends Task {
 
     @Override
     protected void updateDescription(){
-        this.description = this.rawDescription.split(Constants.DDL_SIGN)[0];
-        this.description = this.description.replace(Constants.DDL_CMD, Constants.ZERO_LENGTH_STRING);
+        this.description = this.rawDescription.split(Commands.DEADLINE.SIGN)[0];
+        this.description = this.description.replace(Commands.DEADLINE.NAME, Constants.ZERO_LENGTH_STRING);
         this.description = this.description.trim();
     }
 
     private String deadline(){
-        String[] splitDescription = rawDescription.split(Constants.DDL_SIGN);
+        String[] splitDescription = rawDescription.split(Commands.DEADLINE.SIGN);
         if (splitDescription.length > 1){
             return splitDescription[1];
         } else {
