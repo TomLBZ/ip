@@ -1,3 +1,5 @@
+package duke;
+
 public class Constants {
     public static final String LINE_UNIT = "_";
     public static final String DOT = ".";

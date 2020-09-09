@@ -1,3 +1,6 @@
+package jobs;
+import duke.*;
+
 public class ToDo extends Task {
 
     public ToDo(String rawDescription){

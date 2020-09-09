@@ -1,3 +1,6 @@
+package jobs;
+import duke.*;
+
 public class Event extends Task{
     protected String at;
 

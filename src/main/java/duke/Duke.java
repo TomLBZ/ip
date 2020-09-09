@@ -1,3 +1,17 @@
+package duke;
+
+import exceptions.EmptyCommandException;
+import exceptions.IllegalCommandException;
+import exceptions.MissingDescriptionException;
+import exceptions.UnknownCommandException;
+import jobs.Deadline;
+import jobs.Event;
+import jobs.Task;
+import jobs.ToDo;
+import messages.MessageFormat;
+import messages.MessageOptions;
+import messages.MessageWrapper;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,7 +46,7 @@ public class Duke {
                 Constants.LINE_REPETITION, Constants.LINE_UNIT);
         Scanner inputGetter = new Scanner(System.in);
         String[] greetings = new String[] {
-                " Hello! I'm Duke",
+                " Hello! I'm duke.Duke",
                 " What can I do for you?"
         };
         String bye = " Bye. Hope to see you again soon!";
@@ -135,14 +149,12 @@ public class Duke {
                 msgWrapper.show(iMessage, msgFormat.getMessageOptions());
                 break;
             case EMPTY:
-                String eMessage = "";
-                eMessage = empty.replace("_SIGN_",
+                String eMessage = empty.replace("_SIGN_",
                         originalFlag.SIGN.trim());
                 msgWrapper.show(eMessage, msgFormat.getMessageOptions());
                 break;
             case MISSING:
-                String mMessage = "";
-                mMessage = missing.replace("_NAME_",
+                String mMessage = missing.replace("_NAME_",
                         originalFlag.NAME.trim());
                 msgWrapper.show(mMessage, msgFormat.getMessageOptions());
                 break;

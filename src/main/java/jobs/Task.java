@@ -1,3 +1,6 @@
+package jobs;
+import duke.*;
+
 public class Task {
     protected String rawDescription;
     protected String description;

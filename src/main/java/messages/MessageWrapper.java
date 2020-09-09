@@ -1,4 +1,7 @@
+package messages;
+
 import java.util.Arrays;
+import duke.*;
 
 public class MessageWrapper {
     private String lineBase;

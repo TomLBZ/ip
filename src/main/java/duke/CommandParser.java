@@ -1,3 +1,10 @@
+package duke;
+
+import exceptions.EmptyCommandException;
+import exceptions.IllegalCommandException;
+import exceptions.MissingDescriptionException;
+import exceptions.UnknownCommandException;
+
 public class CommandParser {
     private Commands flag;
     private String parameter;
@@ -9,7 +16,7 @@ public class CommandParser {
 
     public void parse(String rawInput) throws
             EmptyCommandException, IllegalCommandException,
-            UnknownCommandException, MissingDescriptionException{
+            UnknownCommandException, MissingDescriptionException {
         if (rawInput == null) return;
         String[] input = rawInput.split(Constants.SPACE);
         updateFlag(input[0]);

@@ -1,3 +1,5 @@
+package duke;
+
 public enum Commands {
     LIST("list"),
     BYE("bye"),
@@ -25,10 +27,7 @@ public enum Commands {
     }
 
     boolean isNeedParameter(){
-        if(this.SIGN == null || this.SIGN.equals(Constants.ZERO_LENGTH_STRING)){
-            return false;
-        }
-        return true;
+        return this.SIGN != null && !this.SIGN.equals(Constants.ZERO_LENGTH_STRING);
     }
 
     boolean isExceptional(){
@@ -37,9 +36,6 @@ public enum Commands {
     }
 
     boolean isNeedTarget(){
-        if(this.equals(LIST) || this.equals(BYE) || this.isExceptional()){
-            return false;
-        }
-        return true;
+        return !this.equals(LIST) && !this.equals(BYE) && !this.isExceptional();
     }
 }

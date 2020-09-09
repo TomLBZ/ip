@@ -1,3 +1,6 @@
+package exceptions;
+import duke.*;
+
 public class MissingDescriptionException extends CommandException {
     public Commands flag;
     public MissingDescriptionException(Commands flag){

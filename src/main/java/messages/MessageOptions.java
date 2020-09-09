@@ -1,3 +1,5 @@
+package messages;
+
 public enum MessageOptions {
     LINE_INDENT_1,
     LINE_INDENT_2,
