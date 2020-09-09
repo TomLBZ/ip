@@ -8,7 +8,8 @@ public enum Commands {
     EVENT("event", "/at"),
     UNKNOWN("unknown"),
     ILLEGAL("illegal"),
-    EMPTY("empty");
+    EMPTY("empty"),
+    MISSING("missing");
 
     public final String SIGN;
     public final String NAME;
@@ -31,7 +32,8 @@ public enum Commands {
     }
 
     boolean isExceptional(){
-        return this.equals(UNKNOWN) || this.equals(ILLEGAL) || this.equals(EMPTY);
+        return this.equals(UNKNOWN) || this.equals(ILLEGAL) ||
+                this.equals(EMPTY) || this.equals(MISSING);
     }
 
     boolean isNeedTarget(){

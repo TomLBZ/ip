@@ -7,8 +7,9 @@ public class CommandParser {
         parameter = Constants.ZERO_LENGTH_STRING;
     }
 
-    public void parse(String rawInput) throws EmptyCommandException,
-            IllegalCommandException, UnknownCommandException{
+    public void parse(String rawInput) throws
+            EmptyCommandException, IllegalCommandException,
+            UnknownCommandException, MissingDescriptionException{
         if (rawInput == null) return;
         String[] input = rawInput.split(Constants.SPACE);
         updateFlag(input[0]);
@@ -19,9 +20,14 @@ public class CommandParser {
                 if (splitInput.length < 2) {
                     throw new EmptyCommandException(flag);
                 }
-                parameter = rawInput.split(flag.SIGN)[1].trim();
+                parameter = splitInput[1].trim();
                 if (parameter.equals(Constants.ZERO_LENGTH_STRING)) {
                     throw new EmptyCommandException(flag);
+                }
+                String description = splitInput[0].replace(flag.NAME,
+                        Constants.ZERO_LENGTH_STRING).trim();
+                if (description.equals(Constants.ZERO_LENGTH_STRING)){
+                    throw new MissingDescriptionException(flag);
                 }
             } else {
                 throw new IllegalCommandException(flag);
@@ -30,8 +36,9 @@ public class CommandParser {
             String target = rawInput.replace(flag.NAME,
                     Constants.ZERO_LENGTH_STRING).trim();
             if (target.equals(Constants.ZERO_LENGTH_STRING)) {
-                throw new EmptyCommandException(flag);
+                throw new MissingDescriptionException(flag);
             }
+            parameter = target;
         } else if (flag.isExceptional()){
             throw new UnknownCommandException();
         }
@@ -42,7 +49,7 @@ public class CommandParser {
     }
 
     public String getParameter(){
-        return parameter;
+        return parameter.trim();
     }
 
     private void updateFlag(String command) throws UnknownCommandException{

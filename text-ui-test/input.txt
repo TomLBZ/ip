@@ -1,16 +1,13 @@
 do something
-add dummy
-third item
+todo
+todo this
+event
+event /at
+event /at 2
+event do stuff /at 2
 list
-todo this thing
+done 1
 done 2
-list
-done 4
 undone 2
-list
-event event test /at 4pm-6pm
-deadline deadline test /by monday
-list
-done 6
 list
 bye

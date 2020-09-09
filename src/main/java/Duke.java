@@ -36,9 +36,10 @@ public class Duke {
                 " What can I do for you?"
         };
         String bye = " Bye. Hope to see you again soon!";
-        String unknown = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
-        String illegal = "☹ OOPS!!! The \"_SIGN_\" parameter of the _NAME_ command is missing.";
-        String empty = "☹ OOPS!!! The description of the \"_SIGN_\" cannot be empty.";
+        String unknown = "x_x OOPS!!! I'm sorry, but I don't know what that means :-(";
+        String illegal = "x_x OOPS!!! The \"_SIGN_\" parameter of the _NAME_ command is missing.";
+        String empty = "x_x OOPS!!! The parameter \"_SIGN_\" cannot be empty.";
+        String missing = "x_x OOPS!!! The description of the \"_NAME_\" command cannot be empty.";
         msgWrapper.show(greetings, msgFormat.getMessageOptions());
         ArrayList<Task> addedTasks = new ArrayList<>();
         boolean isRunning = true;
@@ -58,6 +59,10 @@ public class Duke {
             catch (IllegalCommandException i){
                 flag = Commands.ILLEGAL;
                 originalFlag = i.flag;
+            }
+            catch (MissingDescriptionException m){
+                flag = Commands.MISSING;
+                originalFlag = m.flag;
             }
             catch (UnknownCommandException u){
                 flag = Commands.UNKNOWN;
@@ -131,14 +136,15 @@ public class Duke {
                 break;
             case EMPTY:
                 String eMessage = "";
-                if (originalFlag.isNeedParameter()){
-                    eMessage = empty.replace(
-                            "_SIGN_", originalFlag.SIGN.trim());
-                } else {
-                    eMessage = empty.replace(
-                            "_SIGN_", originalFlag.NAME.trim());
-                }
+                eMessage = empty.replace("_SIGN_",
+                        originalFlag.SIGN.trim());
                 msgWrapper.show(eMessage, msgFormat.getMessageOptions());
+                break;
+            case MISSING:
+                String mMessage = "";
+                mMessage = missing.replace("_NAME_",
+                        originalFlag.NAME.trim());
+                msgWrapper.show(mMessage, msgFormat.getMessageOptions());
                 break;
             default:
                 break;
