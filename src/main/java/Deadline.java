@@ -17,8 +17,7 @@ public class Deadline extends Task {
         String[] splitDescription = rawDescription.split(Constants.DDL_SIGN);
         if (splitDescription.length > 1){
             return splitDescription[1];
-        }
-        else {
+        } else {
             return Constants.ZERO_LENGTH_STRING;
         }
     }

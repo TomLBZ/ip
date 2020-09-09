@@ -16,8 +16,7 @@ public class CommandParser {
             String commandSign = getCommandSign(flag);
             if(rawInput.contains(commandSign)){
                 parameter = rawInput.split(commandSign)[1].trim();
-            }
-            else {
+            } else {
                 flag = Commands.ILLEGAL;
             }
         }

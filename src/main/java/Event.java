@@ -17,8 +17,7 @@ public class Event extends Task{
         String[] splitDescription = rawDescription.split(Constants.EVENT_SIGN);
         if (splitDescription.length > 1){
             return splitDescription[1];
-        }
-        else {
+        } else {
             return Constants.ZERO_LENGTH_STRING;
         }
     }
