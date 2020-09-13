@@ -25,12 +25,39 @@ public class Duke {
         return commands;
     }
 
-    private static String[] getAddTaskMessage(String description, int count){
+    private static String[] getAddTaskMessage(String description, int count) {
         return new String[]{
                 "Got it. I've added this task",
                 description,
-                "Now you have " + count + " tasks in the list."
+                formatListCount(count)
         };
+    }
+
+    private static String[] getRemoveTaskMessage(String description, int count) {
+        return new String[]{
+                "Noted. I've removed this task:",
+                description,
+                formatListCount(count)
+        };
+    }
+
+    private static String formatListCount(int count) {
+        return "Now you have " + count + " tasks in the list.";
+    }
+
+    private static int getListedIndex(String parameter) {
+        if (parameter.length() != 1) {
+            return -1;
+        }
+        char character = parameter.toCharArray()[0];
+        if (Character.isDigit(character)) {
+            return Integer.parseInt(parameter) - 1;
+        }
+        if (Character.isLetter(character)) {
+            character = Character.toUpperCase(character);
+            return (int)character - Constants.LETTER_OFFSET - 1;
+        }
+        return -1;
     }
 
     public static void main(String[] args) {
@@ -94,28 +121,33 @@ public class Duke {
                 isRunning = false;
                 break;
             case DONE:
-                int index = Integer.parseInt(cmdParser.getParameter()) - 1;
-                Task task = addedTasks.get(index);
-                if (task == null) {
-                    break;
+                Task task = getTask(msgFormat, cmdParser, msgWrapper, addedTasks);
+                if (task != null) {
+                    task.markAsDone();
+                    msgWrapper.show(new String[]{
+                            "Nice! I've marked this task as done:",
+                            task.toString()
+                    }, msgFormat.getMessageOptions());
                 }
-                task.markAsDone();
-                msgWrapper.show(new String[]{
-                        "Nice! I've marked this task as done:",
-                        task.toString()
-                }, msgFormat.getMessageOptions());
                 break;
             case UNDONE:
-                int indexDone = Integer.parseInt(cmdParser.getParameter()) - 1;
-                Task taskDone = addedTasks.get(indexDone);
-                if (taskDone == null) {
-                    break;
+                Task taskDone = getTask(msgFormat, cmdParser, msgWrapper, addedTasks);
+                if (taskDone != null) {
+                    taskDone.markAsUndone();
+                    msgWrapper.show(new String[]{
+                            "Nice! I've marked this task as undone:",
+                            taskDone.toString()
+                    }, msgFormat.getMessageOptions());
                 }
-                taskDone.markAsUndone();
-                msgWrapper.show(new String[]{
-                        "Nice! I've marked this task as undone:",
-                        taskDone.toString()
-                }, msgFormat.getMessageOptions());
+                break;
+            case DELETE:
+                Task taskToRemove = getTask(msgFormat, cmdParser, msgWrapper, addedTasks);
+                if (taskToRemove != null) {
+                    addedTasks.remove(taskToRemove);
+                    msgWrapper.show(
+                            getRemoveTaskMessage(taskToRemove.toString(), addedTasks.size()),
+                            msgFormat.getMessageOptions());
+                }
                 break;
             case TODO:
                 ToDo todo = new ToDo(userInput);
@@ -162,5 +194,19 @@ public class Duke {
                 break;
             }
         }
+    }
+
+    private static Task getTask(
+            MessageFormat msgFormat, CommandParser cmdParser,
+            MessageWrapper msgWrapper, ArrayList<Task> addedTasks) {
+        int index = getListedIndex(cmdParser.getParameter());
+        if (index < 0 || index >= addedTasks.size()) {
+            msgWrapper.show(
+                    "Index out of range.",
+                    msgFormat.getMessageOptions());
+            return null;
+        }
+        Task task = addedTasks.get(index);
+        return task;
     }
 }
