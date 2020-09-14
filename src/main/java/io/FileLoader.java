@@ -4,6 +4,7 @@ import duke.Commands;
 import duke.Constants;
 import jobs.Task;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -20,7 +21,8 @@ public class FileLoader extends IO {
                 throw new IOException();
             }
             String[] lines = new String[0];
-            lines = Files.readAllLines(Paths.get(path + "/" + fileName)).toArray(lines);
+            lines = Files.readAllLines(
+                    Paths.get(path + "/" + fileName), StandardCharsets.UTF_8).toArray(lines);
             int numberOfTasks = 1; //
             for (String line: lines) {
                 if (line == null || line.equals("")) {
