@@ -6,6 +6,7 @@ public enum Commands {
     DONE("done"),
     UNDONE("undone"),
     TODO("todo"),
+    DELETE("delete"),
     DEADLINE("deadline", "/by"),
     EVENT("event", "/at"),
     UNKNOWN("unknown"),

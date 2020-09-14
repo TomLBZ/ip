@@ -1,13 +1,15 @@
-do something
-todo
-todo this
+add some task
+todo task1
+deadline ddl /by 10pm
 event
 event /at
 event /at 2
 event do stuff /at 2
 list
 done 1
-done 2
-undone 2
+undone A
+done 3
+undone c
+delete 2
 list
 bye
