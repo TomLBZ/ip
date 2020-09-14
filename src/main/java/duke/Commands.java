@@ -7,12 +7,10 @@ public enum Commands {
     UNDONE("undone"),
     TODO("todo"),
     DELETE("delete"),
+    CLEAR("clear"),
     DEADLINE("deadline", "/by"),
     EVENT("event", "/at"),
-    UNKNOWN("unknown"),
-    ILLEGAL("illegal"),
-    EMPTY("empty"),
-    MISSING("missing");
+    UNKNOWN("unknown");
 
     public final String SIGN;
     public final String NAME;
@@ -31,12 +29,8 @@ public enum Commands {
         return this.SIGN != null && !this.SIGN.equals(Constants.ZERO_LENGTH_STRING);
     }
 
-    boolean isExceptional(){
-        return this.equals(UNKNOWN) || this.equals(ILLEGAL) ||
-                this.equals(EMPTY) || this.equals(MISSING);
+    boolean isNeedTarget(){
+        return !this.equals(LIST) && !this.equals(BYE) && !this.equals(CLEAR);
     }
 
-    boolean isNeedTarget(){
-        return !this.equals(LIST) && !this.equals(BYE) && !this.isExceptional();
-    }
 }

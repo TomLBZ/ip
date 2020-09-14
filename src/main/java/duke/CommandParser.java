@@ -46,7 +46,7 @@ public class CommandParser {
                 throw new MissingDescriptionException(flag);
             }
             parameter = target;
-        } else if (flag.isExceptional()){
+        } else if (flag.equals(Commands.UNKNOWN)) {
             throw new UnknownCommandException();
         }
     }
