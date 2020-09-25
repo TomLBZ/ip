@@ -30,4 +30,14 @@ public class FileSaver extends IO{
             return false;
         }
     }
+
+    public boolean save(String string) {
+        try {
+            Files.writeString(Paths.get(path + "/" + fileName),
+                    string, StandardCharsets.UTF_8);
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
 }

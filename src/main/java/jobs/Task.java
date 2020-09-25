@@ -2,18 +2,13 @@ package jobs;
 import duke.*;
 
 public class Task {
-    protected String rawDescription;
+
     protected String description;
     protected boolean isDone;
 
-    public Task(String rawDescription){
-        this.rawDescription = rawDescription;
+    public Task(String description){
         this.isDone = false;
-        updateDescription();
-    }
-
-    protected void updateDescription(){
-        description = rawDescription;
+        this.description = description;
     }
 
     public String getStatusIcon(){
