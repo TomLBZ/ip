@@ -188,6 +188,7 @@ public class Constants {
      * The constant EVENT.
      */
     public static final String EVENT = "event";
+    public static final String FIND = "find";
     /**
      * The constant HELP.
      */
@@ -257,6 +258,8 @@ public class Constants {
     public static final String[] TIME_PATTERNS = {"HH:mm:ss", "H:mm:ss", "HH:m:ss", "HH:mm:s", "H:m:ss",
             "HH:m:s", "H:mm:s", "H:m:s", "HH:mm", "H:mm", "HH:m", "H:m", "HH", "H", ""};
 
+    public static final String NO_KEYWORD = "No keyword provided, listing all tasks:" + WIN_NEWLINE;
+    public static final String LIST_HEAD = "Here is the list of tasks:" + WIN_NEWLINE;
     /**
      * The constant LINE_REPETITION.
      */
@@ -292,6 +295,7 @@ public class Constants {
             Map.entry(DELETE, new DeleteAction()),
             Map.entry(DONE, new DoneAction()),
             Map.entry(EVENT, new EventAction()),
+            Map.entry(FIND, new FindAction()),
             Map.entry(HELP, new HelpAction()),
             Map.entry(LIST, new ListAction()),
             Map.entry(TODO, new TodoAction()),
@@ -307,6 +311,7 @@ public class Constants {
             Map.entry(DELETE, HelpText.DELETE),
             Map.entry(DONE, HelpText.DONE),
             Map.entry(EVENT, HelpText.EVENT),
+            Map.entry(FIND, HelpText.FIND),
             Map.entry(HELP, HelpText.HELP),
             Map.entry(LIST, HelpText.LIST),
             Map.entry(TODO, HelpText.TODO),
@@ -331,6 +336,8 @@ public class Constants {
             Map.entry(DONE, "Nice! I've marked this task as done:"
                     + Constants.WIN_NEWLINE + Constants.TEXT_PLACEHOLDER),
             Map.entry(EVENT, Constants.ADDED + Constants.CHANGED),
+            Map.entry(FIND, "Tasks with the specified keyword are:"
+                    + Constants.WIN_NEWLINE + Constants.TEXT_PLACEHOLDER),
             Map.entry(HELP, Constants.TEXT_PLACEHOLDER),
             Map.entry(LIST, Constants.TEXT_PLACEHOLDER),
             Map.entry(TODO, Constants.ADDED + Constants.CHANGED),
