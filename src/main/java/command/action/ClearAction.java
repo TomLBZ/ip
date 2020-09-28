@@ -1,6 +1,5 @@
 package command.action;
 
-import command.ParamNode;
 import duke.TaskList;
 
 public class ClearAction extends Action {

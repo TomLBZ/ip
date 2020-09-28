@@ -14,7 +14,7 @@ public class IO {
     }
 
     protected boolean isFileInvalid()
-            throws IOException{
+            throws IOException {
         boolean isValidated = true;
         File path = new File(this.path);
         if (!path.exists() || !path.isDirectory()) {

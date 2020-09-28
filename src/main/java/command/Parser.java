@@ -14,7 +14,7 @@ public class Parser {
         ParamNode node = new ParamNode(input);
         ArrayList<ParamNode> flattened = node.flatten();
         ArrayList<Command> commands = new ArrayList<>();
-        for (ParamNode args: flattened) {
+        for (ParamNode args : flattened) {
             commands.add(new Command(args));
         }
         return commands;

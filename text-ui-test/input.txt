@@ -1,12 +1,9 @@
 clear
-todo task1
-deadline ddl /by 10pm
-event /at 2
-event do stuff /at 2
-list
+deadline ddl /by Jan 1 2020 18:00
+event test /at Oct 13 2020 0
+list date desc
 done 1
-undone A
-undone c
-delete 2
+list date asc
+undone 2
 list
 bye
