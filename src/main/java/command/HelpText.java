@@ -73,19 +73,22 @@ public enum HelpText {
             "list",
             "Print a list of all added tasks",
             new String[]{
-                    "list"
+                    "list",
+                    "list date [asc / desc / spec]"
             },
             new String[]{
-                    "1. \"list\" >> list all added tasks"
+                    "1. \"list\" >> list all added tasks",
+                    "2. \"list date asc\" >> list tasks with a \"date\" field in ascending order",
+                    "3. \"list date spec Oct 5 2020\" >> list tasks with specific \"date\" field of Oct 5 2020"
             }),
     TODO(
             "todo",
             "Add a todo to the task list",
             new String[]{
-                "todo [description]"
+                    "todo [description]"
             },
             new String[]{
-                "1. \"todo class\" >> adds a todo with description \"class\""
+                    "1. \"todo class\" >> adds a todo with description \"class\""
             }),
     UNDONE(
             "undone",
@@ -120,7 +123,7 @@ public enum HelpText {
 
     public String arrayToString(String[] input) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (String string: input) {
+        for (String string : input) {
             stringBuilder.append(string).append(Constants.WIN_NEWLINE);
         }
         return stringBuilder.toString();

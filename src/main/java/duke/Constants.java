@@ -1,6 +1,5 @@
 package duke;
 
-import command.Help;
 import command.action.Action;
 import command.action.ByeAction;
 import command.action.ClearAction;
@@ -14,12 +13,15 @@ import command.action.TodoAction;
 import command.action.UndoneAction;
 import command.action.UnknownAction;
 import command.HelpText;
+
 import java.util.Map;
 
 public class Constants {
+
     public static final char LPAREN = '(';
     public static final char RPAREN = ')';
     public static final char PARAM = '/';
+    public static final char PARAM_ALIAS = '-';
     public static final char CMD_END = ';';
     public static final char CHAR_SPACE = ' ';
     public static final String LINE_UNIT = "_";
@@ -50,8 +52,10 @@ public class Constants {
     public static final String ZERO_LENGTH_STRING = "";
     public static final String TEXT_PLACEHOLDER = "_t_";
     public static final String NUMBER_PLACEHOLDER = "_n_";
+
     public static final String PATH = "./data";
     public static final String FILENAME = "duke.txt";
+
     public static final String BYE = "bye";
     public static final String CLEAR = "clear";
     public static final String DEADLINE = "deadline";
@@ -63,6 +67,7 @@ public class Constants {
     public static final String TODO = "todo";
     public static final String UNDONE = "undone";
     public static final String UNKNOWN = "unknown";
+
     public static final String INDEX_OUT = "Index out of range.";
     public static final String ADDED = "Got it. I've added this task:";
     public static final String REMOVED = "Noted. I've removed this task:";
@@ -74,12 +79,23 @@ public class Constants {
     public static final String INVALID = "Invalid Command! Please check the syntax." + WIN_NEWLINE;
     public static final String WELCOME = "Hello, I'm Duke. What can I do for you?";
     public static final String HELP_PROMPT = "Use \"help [target]\" to see details :) Try \"help help\"!";
+    public static final String[] DATE_PATTERNS = {
+            "yyyy-MMM-dd", "yyyy-MMM-d", "yyyy-MM-dd", "yyyy-MM-d", "yyyy-M-dd", "yyyy-M-d",
+            "yy-MMM-dd", "yy-MMM-d", "yy-MM-dd", "yy-MM-d", "yy-M-dd", "yy-M-d",
+            "MMM-dd-yyyy", "MMM-d-yyyy", "MM-dd-yyyy", "MM-d-yyyy", "M-dd-yyyy", "M-d-yyyy",
+            "MMM-dd-yy", "MMM-d-yy", "MM-dd-yy", "MM-d-yy", "M-dd-yy", "M-d-yy",
+            "dd-MMM-yyyy", "d-MMM-yyyy", "dd-MM-yyyy", "d-MM-yyyy", "dd-M-yyyy", "d-M-yyyy",
+            "dd-MMM-yy", "d-MMM-yy", "dd-MM-yy", "d-MM-yy", "dd-M-yy", "d-M-yy"};
+    public static final String[] TIME_PATTERNS = {"HH:mm:ss", "H:mm:ss", "HH:m:ss", "HH:mm:s", "H:m:ss",
+            "HH:m:s", "H:mm:s", "H:m:s", "HH:mm", "H:mm", "HH:m", "H:m", "HH", "H", ""};
+
     public static final int LINE_REPETITION = 60;
     public static final int NO_INDENT = 0;
     public static final int INDENT_1 = 1;
     public static final int INDENT_2 = 2;
     public static final int INDENT_3 = 3;
     public static final int LETTER_OFFSET = 64;
+
     public static final Map<String, Action> actionMap = Map.ofEntries(
             Map.entry(BYE, new ByeAction()),
             Map.entry(CLEAR, new ClearAction()),
@@ -107,8 +123,10 @@ public class Constants {
     public static final Map<String, String> paramMap = Map.ofEntries(
             Map.entry(DEADLINE, "by"),
             Map.entry(EVENT, "at"));
+    public static final Map<String, String[]> optionalParamMap = Map.ofEntries(
+            Map.entry(LIST, new String[]{"date", "asc", "desc", "spec"}));
     public static final Map<String, String> messageMap = Map.ofEntries(
-            Map.entry(BYE,"Bye. Hope to see you again soon!"),
+            Map.entry(BYE, "Bye. Hope to see you again soon!"),
             Map.entry(CLEAR, "Nice! I've cleared everything in the list."),
             Map.entry(DEADLINE, Constants.ADDED + Constants.CHANGED),
             Map.entry(DELETE, Constants.REMOVED + Constants.CHANGED),
