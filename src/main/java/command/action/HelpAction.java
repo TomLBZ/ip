@@ -5,9 +5,18 @@ import command.ParamNode;
 import duke.Constants;
 import duke.TaskList;
 
+/**
+ * The type Help action.
+ */
 public class HelpAction extends Action {
 
+    /**
+     * The Is detailed.
+     */
     boolean isDetailed = false;
+    /**
+     * The Help text.
+     */
     HelpText helpText = null;
 
     @Override

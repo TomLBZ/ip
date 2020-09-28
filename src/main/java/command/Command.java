@@ -6,15 +6,38 @@ import command.action.Action;
 import duke.TaskList;
 import exceptions.InvalidCommandException;
 
+/**
+ * The type Command.
+ */
 public class Command implements Help {
 
+    /**
+     * The Args.
+     */
     public ParamNode args;
+    /**
+     * The Flattened args.
+     */
     public ParamNode[] flattenedArgs;
+    /**
+     * The Name.
+     */
     public String name;
     private HelpText helpText;
+    /**
+     * The Action.
+     */
     public Action action;
+    /**
+     * The Result.
+     */
     public String result = "";
 
+    /**
+     * Instantiates a new Command.
+     *
+     * @param args the args
+     */
     public Command(ParamNode args) {
         this.args = args;
         name = args.name;
@@ -44,6 +67,11 @@ public class Command implements Help {
         action = Constants.actionMap.getOrDefault(name, new UnknownAction());
     }
 
+    /**
+     * Execute.
+     *
+     * @param tasks the tasks
+     */
     public void execute(TaskList tasks) {
         try {
             if (isArgsValid()) {
@@ -61,6 +89,11 @@ public class Command implements Help {
         }
     }
 
+    /**
+     * Is exit boolean.
+     *
+     * @return the boolean
+     */
     public boolean isExit() {
         return result.equals(Constants.messageMap.get(Constants.BYE));
     }

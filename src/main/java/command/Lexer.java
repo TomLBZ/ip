@@ -3,6 +3,9 @@ package command;
 import java.util.ArrayList;
 import duke.Constants;
 
+/**
+ * The type Lexer.
+ */
 public class Lexer {
 
     private String getCommand(String s, int i) {
@@ -30,6 +33,12 @@ public class Lexer {
         return s.substring(i, j);
     }
 
+    /**
+     * Analyze array list.
+     *
+     * @param input the input
+     * @return the array list
+     */
     public ArrayList<Token> analyze(String input) {
         ArrayList<Token> result = new ArrayList<>();
         String inString = input.trim();

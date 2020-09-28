@@ -5,6 +5,9 @@ import duke.TaskList;
 import jobs.Task;
 import messages.MessageOptions;
 
+/**
+ * The type List action.
+ */
 public class ListAction extends Action {
 
     @Override

@@ -4,6 +4,9 @@ import command.ParamNode;
 import duke.TaskList;
 import jobs.Deadline;
 
+/**
+ * The type Deadline action.
+ */
 public class DeadlineAction extends Action {
 
     private String description;

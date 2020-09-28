@@ -3,21 +3,50 @@ package messages;
 import java.util.Arrays;
 import duke.*;
 
+/**
+ * The type Message wrapper.
+ */
 public class MessageWrapper {
     private String lineBase;
 
+    /**
+     * Instantiates a new Message wrapper.
+     *
+     * @param length   the length
+     * @param baseUnit the base unit
+     */
     public MessageWrapper(int length, String baseUnit){
         setLineBase(length, baseUnit);
     }
 
+    /**
+     * Set line base.
+     *
+     * @param length   the length
+     * @param baseUnit the base unit
+     */
     public void setLineBase(int length, String baseUnit){
         lineBase = baseUnit.repeat(length);
     }
 
+    /**
+     * Wrap string.
+     *
+     * @param input   the input
+     * @param options the options
+     * @return the string
+     */
     public String wrap(String input, MessageOptions[] options){
         return wrap(new String[]{input}, options);
     }
 
+    /**
+     * Wrap string.
+     *
+     * @param inputs  the inputs
+     * @param options the options
+     * @return the string
+     */
     public String wrap(String[] inputs, MessageOptions[] options){
         boolean isLineBefore = Arrays.asList(options).contains(
                 MessageOptions.LINE_BEFORE);
@@ -43,10 +72,22 @@ public class MessageWrapper {
         return stringBuilder.toString();
     }
 
+    /**
+     * Show.
+     *
+     * @param inputs  the inputs
+     * @param options the options
+     */
     public void show(String[] inputs, MessageOptions[] options){
         System.out.print(wrap(inputs, options));
     }
 
+    /**
+     * Show.
+     *
+     * @param input   the input
+     * @param options the options
+     */
     public void show(String input, MessageOptions[] options){
         System.out.print(wrap(input, options));
     }

@@ -7,22 +7,42 @@ import duke.TaskList;
 import jobs.Task;
 import java.util.ArrayList;
 
+/**
+ * The type Storage.
+ */
 public class Storage {
 
     private FileLoader loader;
     private FileSaver saver;
     private Parser parser;
 
+    /**
+     * Instantiates a new Storage.
+     *
+     * @param directory the directory
+     * @param fileName  the file name
+     * @param parser    the parser
+     */
     public Storage(String directory, String fileName, Parser parser) {
         loader = new FileLoader(directory, fileName);
         saver = new FileSaver(directory, fileName);
         this.parser = parser;
     }
 
+    /**
+     * Save tasks.
+     *
+     * @param tasks the tasks
+     */
     public void saveTasks(ArrayList<Task> tasks) {
         saver.save(tasks);
     }
 
+    /**
+     * Load task list.
+     *
+     * @return the task list
+     */
     public TaskList load() {
         String[] lines = loader.loadAllLines();
         int index = 0;

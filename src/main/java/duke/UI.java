@@ -5,12 +5,18 @@ import messages.MessageOptions;
 import messages.MessageWrapper;
 import java.util.Scanner;
 
+/**
+ * The type Ui.
+ */
 public class UI {
 
     private Scanner inputGetter;
     private MessageFormat msgFormat;
     private MessageWrapper msgWrapper;
 
+    /**
+     * Instantiates a new Ui.
+     */
     public UI() {
         inputGetter = new Scanner(System.in);
         msgFormat = new MessageFormat(new MessageOptions[]{
@@ -24,15 +30,29 @@ public class UI {
 
     }
 
+    /**
+     * Show welcome.
+     */
     public void showWelcome() {
         msgWrapper.show(Constants.WELCOME, msgFormat.getMessageOptions());
     }
 
+    /**
+     * Show text.
+     *
+     * @param input the input
+     */
     public void showText(String input) {
         String[] lines = input.split(Constants.WIN_NEWLINE);
         msgWrapper.show(lines, msgFormat.getMessageOptions());
     }
 
+    /**
+     * Update.
+     *
+     * @param input the input
+     * @param tasks the tasks
+     */
     public void update(String input, TaskList tasks) {
         if (input == null || input.equals(Constants.ZERO_LENGTH_STRING)) {
             showText(input);
@@ -44,6 +64,11 @@ public class UI {
         tasks.indexOption = MessageOptions.NOT_INDEXED;
     }
 
+    /**
+     * Next line string.
+     *
+     * @return the string
+     */
     public String nextLine() {
         return inputGetter.nextLine();
     }

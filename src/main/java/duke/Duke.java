@@ -5,6 +5,9 @@ import command.Parser;
 import io.Storage;
 import java.util.ArrayList;
 
+/**
+ * The type Duke.
+ */
 public class Duke {
 
     private TaskList tasks;
@@ -12,6 +15,12 @@ public class Duke {
     private final UI ui;
     private final Parser parser;
 
+    /**
+     * Instantiates a new Duke.
+     *
+     * @param directory the directory
+     * @param fileName  the file name
+     */
     public Duke(String directory, String fileName) {
         ui = new UI();
         parser = new Parser();
@@ -24,6 +33,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Run.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -43,6 +55,11 @@ public class Duke {
         }
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         new Duke(Constants.PATH, Constants.FILENAME).run();
     }

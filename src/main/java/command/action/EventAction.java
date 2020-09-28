@@ -4,6 +4,9 @@ import command.ParamNode;
 import duke.TaskList;
 import jobs.Event;
 
+/**
+ * The type Event action.
+ */
 public class EventAction extends Action {
 
     private String description;
