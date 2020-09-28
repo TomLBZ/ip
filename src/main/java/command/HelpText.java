@@ -82,10 +82,10 @@ public enum HelpText {
             "todo",
             "Add a todo to the task list",
             new String[]{
-                "todo [description]"
+                    "todo [description]"
             },
             new String[]{
-                "1. \"todo class\" >> adds a todo with description \"class\""
+                    "1. \"todo class\" >> adds a todo with description \"class\""
             }),
     UNDONE(
             "undone",
@@ -120,7 +120,7 @@ public enum HelpText {
 
     public String arrayToString(String[] input) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (String string: input) {
+        for (String string : input) {
             stringBuilder.append(string).append(Constants.WIN_NEWLINE);
         }
         return stringBuilder.toString();

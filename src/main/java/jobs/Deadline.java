@@ -1,5 +1,6 @@
 package jobs;
-import duke.*;
+
+import duke.Constants;
 
 public class Deadline extends Task {
 
@@ -11,7 +12,7 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return Constants.DDL_ICON + super.toString() + " (by: " + by + ")";
     }
 }

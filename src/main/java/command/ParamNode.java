@@ -12,7 +12,7 @@ public class ParamNode {
 
     public ParamNode(ArrayList<Token> tokens) {
         ArrayList<Token> tokensClone = new ArrayList<>();
-        for (Token token: tokens) {
+        for (Token token : tokens) {
             tokensClone.add(new Token(token.token, token.string));
         }
         Token head = tokensClone.get(0);
@@ -63,8 +63,7 @@ public class ParamNode {
 
     private int splitIndex(ArrayList<Token> tokens, Types type) {
         int i = 0;
-        boolean isString = type.equals(Types.STR);
-        for ( ; i < tokens.size(); i++) {
+        for (; i < tokens.size(); i++) {
             Token token = tokens.get(i);
             if (type.equals(Types.STR)) {
                 if (!token.token.equals(Types.STR)) {
@@ -82,7 +81,7 @@ public class ParamNode {
     private String shiftTab(String input) {
         String[] strings = input.split(Constants.WIN_NEWLINE);
         StringBuilder stringBuilder = new StringBuilder();
-        for (String string: strings) {
+        for (String string : strings) {
             stringBuilder.append(Constants.TAB).append(string).append(Constants.WIN_NEWLINE);
         }
         return stringBuilder.toString();

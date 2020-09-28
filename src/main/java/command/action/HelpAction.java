@@ -16,7 +16,7 @@ public class HelpAction extends Action {
             return helpText.toString();
         } else {
             StringBuilder builder = new StringBuilder();
-            for (HelpText help: HelpText.values()) {
+            for (HelpText help : HelpText.values()) {
                 builder.append("Command: ").append(help.name).append(Constants.TAB).append(Constants.TAB).append(
                         "Description: ").append(help.description).append(Constants.WIN_NEWLINE);
             }

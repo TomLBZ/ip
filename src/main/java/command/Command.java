@@ -31,7 +31,7 @@ public class Command implements Help {
         if (targetArg == null) {
             return true; // does not need any parameter
         } else {
-            for (ParamNode node: flattenedArgs) {
+            for (ParamNode node : flattenedArgs) {
                 if (targetArg.equals(node.name)) {
                     return true;
                 }
@@ -54,7 +54,7 @@ public class Command implements Help {
             }
         } catch (Exception e) {
             StringBuilder builder = new StringBuilder(Constants.INVALID);
-            for (String string: getSyntax()) {
+            for (String string : getSyntax()) {
                 builder.append(string).append(Constants.TAB);
             }
             result = builder.toString();

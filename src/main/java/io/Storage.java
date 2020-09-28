@@ -5,6 +5,7 @@ import command.Parser;
 import duke.Constants;
 import duke.TaskList;
 import jobs.Task;
+
 import java.util.ArrayList;
 
 public class Storage {
@@ -27,13 +28,13 @@ public class Storage {
         String[] lines = loader.loadAllLines();
         int index = 0;
         TaskList list = new TaskList();
-        for (String line: lines) {
+        for (String line : lines) {
             String output = dataToCommand(line, index);
             if (!output.equals(Constants.ZERO_LENGTH_STRING)) {
                 index++;
             }
             ArrayList<Command> commands = parser.parse(output);
-            for (Command c: commands) {
+            for (Command c : commands) {
                 c.execute(list);
             }
         }
@@ -70,7 +71,7 @@ public class Storage {
         } else {
             output += bodySeparated[0] + Constants.SPACE;
             String params = bodySeparated[1].replace(Constants.PARAM_LEFT, Constants.ZERO_LENGTH_STRING).replace(
-                    Constants.PARAM_RIGHT,Constants.ZERO_LENGTH_STRING).trim();
+                    Constants.PARAM_RIGHT, Constants.ZERO_LENGTH_STRING).trim();
             output += Constants.PARAM + params.replace(Constants.DETAILS_SIGNATURE, Constants.SPACE);
         }
         if (isDone) {

@@ -1,6 +1,5 @@
 package duke;
 
-import command.Help;
 import command.action.Action;
 import command.action.ByeAction;
 import command.action.ClearAction;
@@ -14,12 +13,14 @@ import command.action.TodoAction;
 import command.action.UndoneAction;
 import command.action.UnknownAction;
 import command.HelpText;
+
 import java.util.Map;
 
 public class Constants {
     public static final char LPAREN = '(';
     public static final char RPAREN = ')';
     public static final char PARAM = '/';
+    public static final char PARAM_ALIAS = '-';
     public static final char CMD_END = ';';
     public static final char CHAR_SPACE = ' ';
     public static final String LINE_UNIT = "_";
@@ -108,7 +109,7 @@ public class Constants {
             Map.entry(DEADLINE, "by"),
             Map.entry(EVENT, "at"));
     public static final Map<String, String> messageMap = Map.ofEntries(
-            Map.entry(BYE,"Bye. Hope to see you again soon!"),
+            Map.entry(BYE, "Bye. Hope to see you again soon!"),
             Map.entry(CLEAR, "Nice! I've cleared everything in the list."),
             Map.entry(DEADLINE, Constants.ADDED + Constants.CHANGED),
             Map.entry(DELETE, Constants.REMOVED + Constants.CHANGED),

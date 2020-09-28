@@ -1,30 +1,31 @@
 package jobs;
-import duke.*;
+
+import duke.Constants;
 
 public class Task {
 
     protected String description;
     protected boolean isDone;
 
-    public Task(String description){
+    public Task(String description) {
         this.isDone = false;
         this.description = description;
     }
 
-    public String getStatusIcon(){
+    public String getStatusIcon() {
         return (isDone ? Constants.TICK : Constants.CROSS);
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
 
-    public void markAsDone(){
+    public void markAsDone() {
         isDone = true;
     }
 
-    public void markAsUndone(){
+    public void markAsUndone() {
         isDone = false;
     }
 }
