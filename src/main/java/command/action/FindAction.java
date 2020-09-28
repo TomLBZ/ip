@@ -8,6 +8,9 @@ import messages.MessageOptions;
 
 import java.util.ArrayList;
 
+/**
+ * The type Find action.
+ */
 public class FindAction extends Action {
 
     private String keyword;

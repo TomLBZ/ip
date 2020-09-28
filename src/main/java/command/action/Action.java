@@ -33,6 +33,7 @@ public class Action {
      * Instantiates a new Action.
      *
      * @param args the args
+     * @throws Exception the exception
      */
     public Action(ParamNode args) throws Exception {
         prepare(args);
@@ -52,6 +53,7 @@ public class Action {
      * Prepare.
      *
      * @param args the args
+     * @throws Exception the exception
      */
     public void prepare(ParamNode args) throws Exception {
         this.args = args;

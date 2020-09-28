@@ -1,4 +1,4 @@
-[T][✘] this is a demo
-[E][✘] testEvent (at: Jan 01 2011 01:01:01)
-[D][✘] testDeadline (by: Oct 13 1998 00:00)
-[E][✘] exam (at: Sep 30 2020 00:00)
+[D][X] math exam (by: Oct 15 2020 10:30)
+[D][X] CS exam (by: Oct 18 2020 15:00)
+[E][X] exam review session (at: Oct 01 2020 08:00)
+[T][X] class

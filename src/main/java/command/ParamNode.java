@@ -151,6 +151,11 @@ public class ParamNode {
         return output;
     }
 
+    /**
+     * Extend array list.
+     *
+     * @return the array list
+     */
     public ArrayList<ParamNode> extend() {
         ArrayList<ParamNode> output = new ArrayList<>();
         output.add(new ParamNode(name, thisData, nextData));

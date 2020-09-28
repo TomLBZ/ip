@@ -81,6 +81,9 @@ public enum HelpText {
                     "1. \"event e /at May 13 2020 8:00\" >> "
                             + "adds an event with description \"e\" and time \"May 13 2020 8:00\""
             }),
+    /**
+     * The Find.
+     */
     FIND(
             "find",
             "Find an event in the task list with the specified keyword",
@@ -148,7 +151,7 @@ public enum HelpText {
      */
     UNKNOWN(
             "unknown",
-            "Prints the error message for an unrecognized command",
+            "Prints the error message for an unrecognized command for debug purposes",
             new String[]{
                     "unknown"
             },

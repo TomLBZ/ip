@@ -50,6 +50,12 @@ public class UI {
         msgWrapper.show(lines, msgFormat.getMessageOptions());
     }
 
+    /**
+     * Show list text.
+     *
+     * @param input       the input
+     * @param indexOption the index option
+     */
     public void showListText(String input, MessageOptions indexOption) {
         ArrayList<String> lines = new ArrayList<>(Arrays.asList(input.split(Constants.WIN_NEWLINE)));
         String head = lines.get(0);

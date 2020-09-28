@@ -5,31 +5,31 @@ package command;
  */
 public enum Types {
     /**
-     * Lpa types.
+     * The Lpa.
      */
     LPA,    //left parenthesis
     /**
-     * Rpn types.
+     * The Rpn.
      */
     RPN,    //right parenthesis
     /**
-     * Str types.
+     * The Str.
      */
     STR,    //string
     /**
-     * Par types.
+     * The Par.
      */
     PAR,    //parameter indicator
     /**
-     * Com types.
+     * The Com.
      */
     COM,    //command
     /**
-     * End types.
+     * The End.
      */
     END,    //line end
     /**
-     * Atm types.
+     * The Atm.
      */
     ATM,    //atomic
 }

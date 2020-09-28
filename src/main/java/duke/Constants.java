@@ -34,6 +34,9 @@ public class Constants {
      * The constant PARAM.
      */
     public static final char PARAM = '/';
+    /**
+     * The constant PARAM_ALIAS.
+     */
     public static final char PARAM_ALIAS = '-';
     /**
      * The constant CMD_END.
@@ -114,11 +117,11 @@ public class Constants {
     /**
      * The constant TICK.
      */
-    public static final String TICK = "\u2713";
+    public static final String TICK = "V"; //"\u2713";
     /**
      * The constant CROSS.
      */
-    public static final String CROSS = "\u2718";
+    public static final String CROSS = "X"; //""\u2718";
     /**
      * The constant TICK_ICON.
      */
@@ -155,7 +158,13 @@ public class Constants {
      * The constant NUMBER_PLACEHOLDER.
      */
     public static final String NUMBER_PLACEHOLDER = "_n_";
+    /**
+     * The constant SYNTAX_OR.
+     */
     public static final String SYNTAX_OR = "    OR    ";
+    /**
+     * The constant NOT_FOUND.
+     */
     public static final String NOT_FOUND = "[NOT FOUND]";
 
     /**
@@ -191,6 +200,9 @@ public class Constants {
      * The constant EVENT.
      */
     public static final String EVENT = "event";
+    /**
+     * The constant FIND.
+     */
     public static final String FIND = "find";
     /**
      * The constant HELP.
@@ -251,6 +263,9 @@ public class Constants {
      * The constant HELP_PROMPT.
      */
     public static final String HELP_PROMPT = "Use \"help [target]\" to see details :) Try \"help help\"!";
+    /**
+     * The constant DATE_PATTERNS.
+     */
     public static final String[] DATE_PATTERNS = {
             "yyyy-MMM-dd", "yyyy-MMM-d", "yyyy-MM-dd", "yyyy-MM-d", "yyyy-M-dd", "yyyy-M-d",
             "yy-MMM-dd", "yy-MMM-d", "yy-MM-dd", "yy-MM-d", "yy-M-dd", "yy-M-d",
@@ -258,10 +273,19 @@ public class Constants {
             "MMM-dd-yy", "MMM-d-yy", "MM-dd-yy", "MM-d-yy", "M-dd-yy", "M-d-yy",
             "dd-MMM-yyyy", "d-MMM-yyyy", "dd-MM-yyyy", "d-MM-yyyy", "dd-M-yyyy", "d-M-yyyy",
             "dd-MMM-yy", "d-MMM-yy", "dd-MM-yy", "d-MM-yy", "dd-M-yy", "d-M-yy"};
+    /**
+     * The constant TIME_PATTERNS.
+     */
     public static final String[] TIME_PATTERNS = {"HH:mm:ss", "H:mm:ss", "HH:m:ss", "HH:mm:s", "H:m:ss",
             "HH:m:s", "H:mm:s", "H:m:s", "HH:mm", "H:mm", "HH:m", "H:m", "HH", "H", ""};
 
+    /**
+     * The constant NO_KEYWORD.
+     */
     public static final String NO_KEYWORD = "No keyword provided, listing all tasks:" + WIN_NEWLINE;
+    /**
+     * The constant LIST_HEAD.
+     */
     public static final String LIST_HEAD = "Here is the list of tasks:" + WIN_NEWLINE;
     /**
      * The constant LINE_REPETITION.
@@ -326,6 +350,9 @@ public class Constants {
     public static final Map<String, String> paramMap = Map.ofEntries(
             Map.entry(DEADLINE, "by"),
             Map.entry(EVENT, "at"));
+    /**
+     * The constant optionalParamMap.
+     */
     public static final Map<String, String[]> optionalParamMap = Map.ofEntries(
             Map.entry(LIST, new String[]{"date", "asc", "desc", "spec"}));
     /**

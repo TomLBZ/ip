@@ -5,51 +5,51 @@ package messages;
  */
 public enum MessageOptions {
     /**
-     * Line indent 1 message options.
+     * The Line indent 1.
      */
     LINE_INDENT_1,
     /**
-     * Line indent 2 message options.
+     * The Line indent 2.
      */
     LINE_INDENT_2,
     /**
-     * Line indent 3 message options.
+     * The Line indent 3.
      */
     LINE_INDENT_3,
     /**
-     * Line before message options.
+     * The Line before.
      */
     LINE_BEFORE,
     /**
-     * Indented 1 message options.
+     * The Indented 1.
      */
     INDENTED_1,
     /**
-     * Indented 2 message options.
+     * The Indented 2.
      */
     INDENTED_2,
     /**
-     * Indented 3 message options.
+     * The Indented 3.
      */
     INDENTED_3,
     /**
-     * Not indexed message options.
+     * The Not indexed.
      */
     NOT_INDEXED,
     /**
-     * Indexed num message options.
+     * The Indexed num.
      */
     INDEXED_NUM,
     /**
-     * Indexed abc message options.
+     * The Indexed abc.
      */
     INDEXED_ABC,
     /**
-     * Auto return message options.
+     * The Auto return.
      */
     AUTO_RETURN,
     /**
-     * Line after message options.
+     * The Line after.
      */
     LINE_AFTER
 }

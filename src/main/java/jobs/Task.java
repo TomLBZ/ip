@@ -21,7 +21,13 @@ public class Task {
      * The Is done.
      */
     protected boolean isDone;
+    /**
+     * The Date time.
+     */
     protected LocalDateTime dateTime;
+    /**
+     * The Is dated.
+     */
     protected boolean isDated;
 
     /**
@@ -57,6 +63,12 @@ public class Task {
         return patterns;
     }
 
+    /**
+     * Parse date time local date time.
+     *
+     * @param input the input
+     * @return the local date time
+     */
     public static LocalDateTime parseDateTime(String input) {
         LocalDateTime dateTime = null;
         ArrayList<String> patterns = getPatterns(false);
@@ -87,11 +99,21 @@ public class Task {
         return dateTime;
     }
 
+    /**
+     * Gets date time.
+     *
+     * @param date the date
+     */
     protected void getDateTime(String date) {
         dateTime = parseDateTime(date);
         isDated = dateTime != null;
     }
 
+    /**
+     * Gets date.
+     *
+     * @return the date
+     */
     public LocalDate getDate() {
         if (dateTime == null) {
             return null;
@@ -100,6 +122,11 @@ public class Task {
         }
     }
 
+    /**
+     * Gets time.
+     *
+     * @return the time
+     */
     public LocalTime getTime() {
         if (dateTime == null) {
             return null;
@@ -108,10 +135,21 @@ public class Task {
         }
     }
 
+    /**
+     * Gets date time.
+     *
+     * @return the date time
+     */
     public LocalDateTime getDateTime() {
         return dateTime;
     }
 
+    /**
+     * Gets date time string.
+     *
+     * @param input the input
+     * @return the date time string
+     */
     protected String getDateTimeString(String input) {
         String result;
         DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("MMM dd yyyy");

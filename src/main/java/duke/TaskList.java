@@ -18,6 +18,9 @@ public class TaskList {
      * The Index option.
      */
     public MessageOptions indexOption;
+    /**
+     * The Indices.
+     */
     public ArrayList<Integer> indices;
 
     /**
@@ -29,10 +32,26 @@ public class TaskList {
         indices = new ArrayList<>();
     }
 
+    /**
+     * Get task.
+     *
+     * @param index the index
+     * @return the task
+     */
     public Task get(int index) {
-        return tasks.get(indices.get(index));
+        try {
+            return tasks.get(indices.get(index));
+        } catch (Exception ignore) {
+            return tasks.get(index);
+        }
     }
 
+    /**
+     * Index of int.
+     *
+     * @param task the task
+     * @return the int
+     */
     public int indexOf(Task task) {
         return tasks.indexOf(task);
     }
