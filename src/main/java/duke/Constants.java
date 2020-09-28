@@ -7,6 +7,7 @@ import command.action.DeadlineAction;
 import command.action.DeleteAction;
 import command.action.DoneAction;
 import command.action.EventAction;
+import command.action.FindAction;
 import command.action.HelpAction;
 import command.action.ListAction;
 import command.action.TodoAction;
@@ -52,6 +53,8 @@ public class Constants {
     public static final String ZERO_LENGTH_STRING = "";
     public static final String TEXT_PLACEHOLDER = "_t_";
     public static final String NUMBER_PLACEHOLDER = "_n_";
+    public static final String SYNTAX_OR = "    OR    ";
+    public static final String NOT_FOUND = "[NOT FOUND]";
 
     public static final String PATH = "./data";
     public static final String FILENAME = "duke.txt";

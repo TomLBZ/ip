@@ -83,7 +83,7 @@ public enum HelpText {
             "Print a list of all added tasks",
             new String[]{
                     "list",
-                    "list date [asc / desc / spec]"
+                    "list date [asc / desc / spec MMM dd yyyy]"
             },
             new String[]{
                     "1. \"list\" >> list all added tasks",

@@ -20,8 +20,7 @@ public class ListAction extends Action {
     @Override
     public String act(TaskList tasks) {
         tasks.indices = new ArrayList<>();
-        StringBuilder builder = new StringBuilder();
-        tasks.indexOption = MessageOptions.INDEXED_NUM;
+        StringBuilder builder = new StringBuilder(Constants.LIST_HEAD);
         ArrayList<Task> displayList = new ArrayList<>(tasks.tasks);
         if (!stringDate.equals("")) {
             LocalDateTime dateTime = Task.parseDateTime(stringDate);
@@ -48,11 +47,16 @@ public class ListAction extends Action {
                 tasks.indices.add(tasks.indexOf(task));
             }
         }
+        if (builder.toString().equals(Constants.LIST_HEAD)) {
+            builder.append(Constants.NOT_FOUND);
+        } else {
+            tasks.indexOption = MessageOptions.INDEXED_NUM;
+        }
         return builder.toString();
     }
 
     @Override
-    public void prepare(ParamNode args) {
+    public void prepare(ParamNode args) throws Exception {
         super.prepare(args);
         int len = flattenedArgs.length;
         if (len == 0) {
@@ -89,9 +93,12 @@ public class ListAction extends Action {
                     isAsc = false;
                     isDesc = false;
                     stringDate = "";
+                    throw new Exception();
                 }
-            } else {
+            } else if (stringDate.trim().length() == 0) {
                 stringDate = "";
+            } else {
+                throw new Exception();
             }
         }
     }

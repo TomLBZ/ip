@@ -26,7 +26,7 @@ public class HelpAction extends Action {
     }
 
     @Override
-    public void prepare(ParamNode args) {
+    public void prepare(ParamNode args) throws Exception {
         super.prepare(args);
         if (flattenedArgs.length > 0) {
             String target = flattenedArgs[0].name;
