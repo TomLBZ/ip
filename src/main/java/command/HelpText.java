@@ -73,10 +73,13 @@ public enum HelpText {
             "list",
             "Print a list of all added tasks",
             new String[]{
-                    "list"
+                    "list",
+                    "list date [asc / desc / spec]"
             },
             new String[]{
-                    "1. \"list\" >> list all added tasks"
+                    "1. \"list\" >> list all added tasks",
+                    "2. \"list date asc\" >> list tasks with a \"date\" field in ascending order",
+                    "3. \"list date spec Oct 5 2020\" >> list tasks with specific \"date\" field of Oct 5 2020"
             }),
     TODO(
             "todo",

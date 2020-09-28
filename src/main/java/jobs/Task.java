@@ -22,33 +22,63 @@ public class Task {
         isDated = false;
     }
 
-    protected void getDateTime(String date) {
-        dateTime = null;
+    private static ArrayList<String> getPatterns(boolean isDateOnly) {
         ArrayList<String> patterns = new ArrayList<>();
-        for (String datePattern : Constants.DATE_PATTERNS) {
-            for (String timePattern : Constants.TIME_PATTERNS) {
-                String concat = datePattern + Constants.SPACE + timePattern;
-                patterns.add(concat);
-                patterns.add(concat.replace(Constants.PARAM_ALIAS, Constants.PARAM));
-                patterns.add(concat.replace(Constants.PARAM_ALIAS, Constants.CHAR_SPACE));
+        if (isDateOnly) {
+            for (String datePattern : Constants.DATE_PATTERNS) {
+                patterns.add(datePattern);
+                patterns.add(datePattern.replace(Constants.PARAM_ALIAS, Constants.PARAM));
+                patterns.add(datePattern.replace(Constants.PARAM_ALIAS, Constants.CHAR_SPACE));
+            }
+        } else {
+            for (String datePattern : Constants.DATE_PATTERNS) {
+                for (String timePattern : Constants.TIME_PATTERNS) {
+                    String concat = datePattern + Constants.SPACE + timePattern;
+                    patterns.add(concat);
+                    patterns.add(concat.replace(Constants.PARAM_ALIAS, Constants.PARAM));
+                    patterns.add(concat.replace(Constants.PARAM_ALIAS, Constants.CHAR_SPACE));
+                }
             }
         }
-        int noMatch = 0;
+        return patterns;
+    }
+
+    public static LocalDateTime parseDateTime(String input) {
+        LocalDateTime dateTime = null;
+        ArrayList<String> patterns = getPatterns(false);
         for (String pattern : patterns) {
             try {
                 if (dateTime != null) {
                     break;
                 } else {
-                    dateTime = LocalDateTime.parse(date.trim(), DateTimeFormatter.ofPattern(pattern));
+                    dateTime = LocalDateTime.parse(input.trim(), DateTimeFormatter.ofPattern(pattern));
                 }
-            } catch (Exception e) {
-                noMatch++;
+            } catch (Exception ignored) {
             }
         }
-        isDated = noMatch != date.length() && dateTime != null;
+        if (dateTime == null) {
+            patterns = getPatterns(true);
+            for (String datePattern : patterns) {
+                try {
+                    if (dateTime != null) {
+                        break;
+                    } else {
+                        dateTime = LocalDate.parse(input.trim(),
+                                DateTimeFormatter.ofPattern(datePattern)).atStartOfDay();
+                    }
+                } catch (Exception ignored) {
+                }
+            }
+        }
+        return dateTime;
     }
 
-    protected LocalDate getDate() {
+    protected void getDateTime(String date) {
+        dateTime = parseDateTime(date);
+        isDated = dateTime != null;
+    }
+
+    public LocalDate getDate() {
         if (dateTime == null) {
             return null;
         } else {
@@ -56,7 +86,7 @@ public class Task {
         }
     }
 
-    protected LocalTime getTime() {
+    public LocalTime getTime() {
         if (dateTime == null) {
             return null;
         } else {
@@ -64,7 +94,7 @@ public class Task {
         }
     }
 
-    protected LocalDateTime getDateTime() {
+    public LocalDateTime getDateTime() {
         return dateTime;
     }
 

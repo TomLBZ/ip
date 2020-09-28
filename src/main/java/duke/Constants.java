@@ -87,7 +87,7 @@ public class Constants {
             "dd-MMM-yyyy", "d-MMM-yyyy", "dd-MM-yyyy", "d-MM-yyyy", "dd-M-yyyy", "d-M-yyyy",
             "dd-MMM-yy", "d-MMM-yy", "dd-MM-yy", "d-MM-yy", "dd-M-yy", "d-M-yy"};
     public static final String[] TIME_PATTERNS = {"HH:mm:ss", "H:mm:ss", "HH:m:ss", "HH:mm:s", "H:m:ss",
-            "HH:m:s", "H:mm:s", "H:m:s", "HH:mm", "H:mm", "HH:m", "H:m", "HH", "H"};
+            "HH:m:s", "H:mm:s", "H:m:s", "HH:mm", "H:mm", "HH:m", "H:m", "HH", "H", ""};
 
     public static final int LINE_REPETITION = 60;
     public static final int NO_INDENT = 0;
@@ -123,6 +123,8 @@ public class Constants {
     public static final Map<String, String> paramMap = Map.ofEntries(
             Map.entry(DEADLINE, "by"),
             Map.entry(EVENT, "at"));
+    public static final Map<String, String[]> optionalParamMap = Map.ofEntries(
+            Map.entry(LIST, new String[]{"date", "asc", "desc", "spec"}));
     public static final Map<String, String> messageMap = Map.ofEntries(
             Map.entry(BYE, "Bye. Hope to see you again soon!"),
             Map.entry(CLEAR, "Nice! I've cleared everything in the list."),

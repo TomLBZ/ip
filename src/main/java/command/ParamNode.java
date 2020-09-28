@@ -117,4 +117,18 @@ public class ParamNode {
         return output;
     }
 
+    public ArrayList<ParamNode> extend() {
+        ArrayList<ParamNode> output = new ArrayList<>();
+        output.add(new ParamNode(name, thisData, nextData));
+        int index = 0;
+        ParamNode nextNode = output.get(index).thisData;
+        while (nextNode != null) {
+            output.get(index).thisData = null;
+            output.add(new ParamNode(nextNode.name, nextNode.thisData, nextNode.nextData));
+            nextNode = nextNode.thisData;
+            index++;
+        }
+        return output;
+    }
+
 }
