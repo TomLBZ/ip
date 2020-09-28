@@ -1,18 +1,7 @@
 package duke;
 
 import command.Help;
-import command.action.Action;
-import command.action.ByeAction;
-import command.action.ClearAction;
-import command.action.DeadlineAction;
-import command.action.DeleteAction;
-import command.action.DoneAction;
-import command.action.EventAction;
-import command.action.HelpAction;
-import command.action.ListAction;
-import command.action.TodoAction;
-import command.action.UndoneAction;
-import command.action.UnknownAction;
+import command.action.*;
 import command.HelpText;
 import java.util.Map;
 
@@ -58,6 +47,7 @@ public class Constants {
     public static final String DELETE = "delete";
     public static final String DONE = "done";
     public static final String EVENT = "event";
+    public static final String FIND = "find";
     public static final String HELP = "help";
     public static final String LIST = "list";
     public static final String TODO = "todo";
@@ -74,6 +64,7 @@ public class Constants {
     public static final String INVALID = "Invalid Command! Please check the syntax." + WIN_NEWLINE;
     public static final String WELCOME = "Hello, I'm Duke. What can I do for you?";
     public static final String HELP_PROMPT = "Use \"help [target]\" to see details :) Try \"help help\"!";
+    public static final String NO_KEYWORD = "No keyword provided, listing all tasks:" + WIN_NEWLINE;
     public static final int LINE_REPETITION = 60;
     public static final int NO_INDENT = 0;
     public static final int INDENT_1 = 1;
@@ -87,6 +78,7 @@ public class Constants {
             Map.entry(DELETE, new DeleteAction()),
             Map.entry(DONE, new DoneAction()),
             Map.entry(EVENT, new EventAction()),
+            Map.entry(FIND, new FindAction()),
             Map.entry(HELP, new HelpAction()),
             Map.entry(LIST, new ListAction()),
             Map.entry(TODO, new TodoAction()),
@@ -99,6 +91,7 @@ public class Constants {
             Map.entry(DELETE, HelpText.DELETE),
             Map.entry(DONE, HelpText.DONE),
             Map.entry(EVENT, HelpText.EVENT),
+            Map.entry(FIND, HelpText.FIND),
             Map.entry(HELP, HelpText.HELP),
             Map.entry(LIST, HelpText.LIST),
             Map.entry(TODO, HelpText.TODO),
@@ -115,6 +108,8 @@ public class Constants {
             Map.entry(DONE, "Nice! I've marked this task as done:"
                     + Constants.WIN_NEWLINE + Constants.TEXT_PLACEHOLDER),
             Map.entry(EVENT, Constants.ADDED + Constants.CHANGED),
+            Map.entry(FIND, "Tasks with the specified keyword are:"
+                    + Constants.WIN_NEWLINE + Constants.TEXT_PLACEHOLDER),
             Map.entry(HELP, Constants.TEXT_PLACEHOLDER),
             Map.entry(LIST, Constants.TEXT_PLACEHOLDER),
             Map.entry(TODO, Constants.ADDED + Constants.CHANGED),
