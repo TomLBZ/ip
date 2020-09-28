@@ -8,14 +8,28 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * The type Task.
+ */
 public class Task {
 
+    /**
+     * The Description.
+     */
     protected String description;
+    /**
+     * The Is done.
+     */
     protected boolean isDone;
     protected LocalDateTime dateTime;
     protected boolean isDated;
 
-    public Task(String description) {
+    /**
+     * Instantiates a new Task.
+     *
+     * @param description the description
+     */
+    public Task(String description){
         this.isDone = false;
         this.description = description;
         dateTime = null;
@@ -111,7 +125,12 @@ public class Task {
         return result;
     }
 
-    public String getStatusIcon() {
+    /**
+     * Get status icon string.
+     *
+     * @return the string
+     */
+    public String getStatusIcon(){
         return (isDone ? Constants.TICK : Constants.CROSS);
     }
 
@@ -120,11 +139,17 @@ public class Task {
         return "[" + getStatusIcon() + "] " + description;
     }
 
-    public void markAsDone() {
+    /**
+     * Mark as done.
+     */
+    public void markAsDone(){
         isDone = true;
     }
 
-    public void markAsUndone() {
+    /**
+     * Mark as undone.
+     */
+    public void markAsUndone(){
         isDone = false;
     }
 }

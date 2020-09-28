@@ -5,6 +5,9 @@ import duke.Constants;
 import duke.TaskList;
 import jobs.Task;
 
+/**
+ * The type Delete action.
+ */
 public class DeleteAction extends Action {
 
     private int index;

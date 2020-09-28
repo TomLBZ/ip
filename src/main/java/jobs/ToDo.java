@@ -2,9 +2,17 @@ package jobs;
 
 import duke.Constants;
 
+/**
+ * The type To do.
+ */
 public class ToDo extends Task {
 
-    public ToDo(String description) {
+    /**
+     * Instantiates a new To do.
+     *
+     * @param description the description
+     */
+    public ToDo(String description){
         super(description);
     }
 

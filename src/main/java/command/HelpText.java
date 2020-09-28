@@ -2,8 +2,14 @@ package command;
 
 import duke.Constants;
 
+/**
+ * The enum Help text.
+ */
 public enum HelpText {
 
+    /**
+     * The Bye.
+     */
     BYE(
             "bye",
             "Quit the program",
@@ -13,6 +19,9 @@ public enum HelpText {
             new String[]{
                     "1. \"bye\" >> quits the program"
             }),
+    /**
+     * The Clear.
+     */
     CLEAR(
             "clear",
             "Clear the task list",
@@ -22,6 +31,9 @@ public enum HelpText {
             new String[]{
                     "1. \"clear\" >> clears the task list"
             }),
+    /**
+     * The Deadline.
+     */
     DEADLINE(
             "deadline",
             "Add a deadline to the task list",
@@ -31,6 +43,9 @@ public enum HelpText {
             new String[]{
                     "1. \"deadline ddl /by 5:00pm\" >> adds a deadline with description \"ddl\" and time \"5:00pm\""
             }),
+    /**
+     * The Delete.
+     */
     DELETE(
             "delete",
             "Delete a task from the task list",
@@ -40,6 +55,9 @@ public enum HelpText {
             new String[]{
                     "1. \"delete 1\" >> deletes the task with index 1 from the task list"
             }),
+    /**
+     * The Done.
+     */
     DONE(
             "done",
             "Mark a task as done",
@@ -49,6 +67,9 @@ public enum HelpText {
             new String[]{
                     "1. \"done 1\" >> marks the task with index 1 as done"
             }),
+    /**
+     * The Event.
+     */
     EVENT(
             "event",
             "Add an event to the task list",
@@ -67,6 +88,9 @@ public enum HelpText {
             new String[]{
                     "1. \"find exam\" >> finds all tasks with the \"exam\" keyword from the task list"
             }),
+    /**
+     * The Help.
+     */
     HELP(
             "help",
             "Print the list of available commands, or print the details of a specified command",
@@ -78,6 +102,9 @@ public enum HelpText {
                     "1. \"help\" >> prints the list of available commands",
                     "2. \"help event\" >> prints the details of the \"event\" command"
             }),
+    /**
+     * The List.
+     */
     LIST(
             "list",
             "Print a list of all added tasks",
@@ -90,6 +117,9 @@ public enum HelpText {
                     "2. \"list date asc\" >> list tasks with a \"date\" field in ascending order",
                     "3. \"list date spec Oct 5 2020\" >> list tasks with specific \"date\" field of Oct 5 2020"
             }),
+    /**
+     * The Todo.
+     */
     TODO(
             "todo",
             "Add a todo to the task list",
@@ -99,6 +129,9 @@ public enum HelpText {
             new String[]{
                     "1. \"todo class\" >> adds a todo with description \"class\""
             }),
+    /**
+     * The Undone.
+     */
     UNDONE(
             "undone",
             "Mark a task as undone",
@@ -108,6 +141,9 @@ public enum HelpText {
             new String[]{
                     "1. \"undone 1\" >> marks the task with index 1 as undone"
             }),
+    /**
+     * The Unknown.
+     */
     UNKNOWN(
             "unknown",
             "Prints the error message for an unrecognized command",
@@ -118,9 +154,21 @@ public enum HelpText {
                     "1. \"unknown\" >> prints \"OOPS, I don't know what that means :-( Try \"help\"!\""
             });
 
+    /**
+     * The Name.
+     */
     public String name;
+    /**
+     * The Description.
+     */
     public String description;
+    /**
+     * The Syntax.
+     */
     public String[] syntax;
+    /**
+     * The Usages.
+     */
     public String[] usages;
 
     HelpText(String name, String description, String[] syntax, String[] usages) {
@@ -130,6 +178,12 @@ public enum HelpText {
         this.usages = usages;
     }
 
+    /**
+     * Array to string string.
+     *
+     * @param input the input
+     * @return the string
+     */
     public String arrayToString(String[] input) {
         StringBuilder stringBuilder = new StringBuilder();
         for (String string : input) {

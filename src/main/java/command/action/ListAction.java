@@ -11,6 +11,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/**
+ * The type List action.
+ */
 public class ListAction extends Action {
 
     private boolean isAsc = false;

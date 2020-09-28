@@ -5,6 +5,9 @@ import duke.Constants;
 import duke.TaskList;
 import jobs.Task;
 
+/**
+ * The type Done action.
+ */
 public class DoneAction extends Action {
 
     private int index;

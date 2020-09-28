@@ -4,22 +4,51 @@ import java.util.Arrays;
 
 import duke.Constants;
 
+/**
+ * The type Message wrapper.
+ */
 public class MessageWrapper {
     private String lineBase;
 
-    public MessageWrapper(int length, String baseUnit) {
+    /**
+     * Instantiates a new Message wrapper.
+     *
+     * @param length   the length
+     * @param baseUnit the base unit
+     */
+    public MessageWrapper(int length, String baseUnit){
         setLineBase(length, baseUnit);
     }
 
-    public void setLineBase(int length, String baseUnit) {
+    /**
+     * Set line base.
+     *
+     * @param length   the length
+     * @param baseUnit the base unit
+     */
+    public void setLineBase(int length, String baseUnit){
         lineBase = baseUnit.repeat(length);
     }
 
-    public String wrap(String input, MessageOptions[] options) {
+    /**
+     * Wrap string.
+     *
+     * @param input   the input
+     * @param options the options
+     * @return the string
+     */
+    public String wrap(String input, MessageOptions[] options){
         return wrap(new String[]{input}, options);
     }
 
-    public String wrap(String[] inputs, MessageOptions[] options) {
+    /**
+     * Wrap string.
+     *
+     * @param inputs  the inputs
+     * @param options the options
+     * @return the string
+     */
+    public String wrap(String[] inputs, MessageOptions[] options){
         boolean isLineBefore = Arrays.asList(options).contains(
                 MessageOptions.LINE_BEFORE);
         boolean isLineAfter = Arrays.asList(options).contains(
@@ -44,11 +73,23 @@ public class MessageWrapper {
         return stringBuilder.toString();
     }
 
-    public void show(String[] inputs, MessageOptions[] options) {
+    /**
+     * Show.
+     *
+     * @param inputs  the inputs
+     * @param options the options
+     */
+    public void show(String[] inputs, MessageOptions[] options){
         System.out.print(wrap(inputs, options));
     }
 
-    public void show(String input, MessageOptions[] options) {
+    /**
+     * Show.
+     *
+     * @param input   the input
+     * @param options the options
+     */
+    public void show(String input, MessageOptions[] options){
         System.out.print(wrap(input, options));
     }
 
