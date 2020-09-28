@@ -82,8 +82,12 @@ public class Command implements Help {
             }
         } catch (Exception e) {
             StringBuilder builder = new StringBuilder(Constants.INVALID);
-            for (String string : getSyntax()) {
-                builder.append(string).append(Constants.TAB);
+            String[] syntax = getSyntax();
+            for (int i = 0; i < syntax.length; i++) {
+                builder.append(syntax[i]);
+                if (i < syntax.length - 1) {
+                    builder.append(Constants.SYNTAX_OR);
+                }
             }
             result = builder.toString();
         }

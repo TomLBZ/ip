@@ -21,7 +21,7 @@ public class EventAction extends Action {
     }
 
     @Override
-    public void prepare(ParamNode args) {
+    public void prepare(ParamNode args) throws Exception {
         super.prepare(args);
         at = flattenedArgs[1].thisData.toFlatString();
         description = flattenedArgs[0].toFlatString();

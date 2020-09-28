@@ -21,7 +21,7 @@ public class DeadlineAction extends Action {
     }
 
     @Override
-    public void prepare(ParamNode args) {
+    public void prepare(ParamNode args) throws Exception {
         super.prepare(args);
         by = flattenedArgs[1].thisData.toFlatString();
         description = flattenedArgs[0].toFlatString();

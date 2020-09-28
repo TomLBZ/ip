@@ -34,7 +34,7 @@ public class Action {
      *
      * @param args the args
      */
-    public Action(ParamNode args) {
+    public Action(ParamNode args) throws Exception {
         prepare(args);
     }
 
@@ -53,7 +53,7 @@ public class Action {
      *
      * @param args the args
      */
-    public void prepare(ParamNode args) {
+    public void prepare(ParamNode args) throws Exception {
         this.args = args;
         flattenedArgs = new ParamNode[0];
         if (args.thisData != null) {

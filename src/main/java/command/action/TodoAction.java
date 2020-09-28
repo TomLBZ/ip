@@ -20,7 +20,7 @@ public class TodoAction extends Action {
     }
 
     @Override
-    public void prepare(ParamNode args) {
+    public void prepare(ParamNode args) throws Exception {
         super.prepare(args);
         description = args.thisData.toFlatString();
     }

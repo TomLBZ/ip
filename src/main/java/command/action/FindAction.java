@@ -14,11 +14,17 @@ public class FindAction extends Action {
 
     @Override
     public String act(TaskList tasks) {
+        tasks.indices = new ArrayList<>();
         if (keyword == null || keyword.length() == 0) {
             StringBuilder builder = new StringBuilder(Constants.NO_KEYWORD);
-            tasks.indexOption = MessageOptions.INDEXED_NUM;
             for (Task task : tasks.tasks) {
                 builder.append(task.toString()).append(Constants.WIN_NEWLINE);
+                tasks.indices.add(tasks.indexOf(task));
+            }
+            if (builder.toString().equals(Constants.NO_KEYWORD)) {
+                builder.append(Constants.NOT_FOUND);
+            } else {
+                tasks.indexOption = MessageOptions.INDEXED_NUM;
             }
             return builder.toString();
         } else {
@@ -28,14 +34,19 @@ public class FindAction extends Action {
             StringBuilder builder = new StringBuilder();
             for (Task task : filtered) {
                 builder.append(task.toString()).append(Constants.WIN_NEWLINE);
+                tasks.indices.add(tasks.indexOf(task));
             }
-            tasks.indexOption = MessageOptions.INDEXED_NUM;
+            if (builder.toString().equals(Constants.ZERO_LENGTH_STRING)) {
+                builder.append(Constants.NOT_FOUND);
+            } else {
+                tasks.indexOption = MessageOptions.INDEXED_NUM;
+            }
             return result.replace(Constants.TEXT_PLACEHOLDER, builder.toString());
         }
     }
 
     @Override
-    public void prepare(ParamNode args) {
+    public void prepare(ParamNode args) throws Exception {
         super.prepare(args);
         if (args.thisData == null) {
             keyword = null;

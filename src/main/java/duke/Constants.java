@@ -7,6 +7,7 @@ import command.action.DeadlineAction;
 import command.action.DeleteAction;
 import command.action.DoneAction;
 import command.action.EventAction;
+import command.action.FindAction;
 import command.action.HelpAction;
 import command.action.ListAction;
 import command.action.TodoAction;
@@ -154,6 +155,8 @@ public class Constants {
      * The constant NUMBER_PLACEHOLDER.
      */
     public static final String NUMBER_PLACEHOLDER = "_n_";
+    public static final String SYNTAX_OR = "    OR    ";
+    public static final String NOT_FOUND = "[NOT FOUND]";
 
     /**
      * The constant PATH.

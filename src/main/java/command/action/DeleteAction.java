@@ -24,7 +24,7 @@ public class DeleteAction extends Action {
     }
 
     @Override
-    public void prepare(ParamNode args) {
+    public void prepare(ParamNode args) throws Exception {
         super.prepare(args);
         index = getIndex(args.thisData.name);
     }
