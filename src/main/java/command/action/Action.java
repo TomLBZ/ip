@@ -84,7 +84,7 @@ public class Action {
      */
     protected int getIndex(String input) {
         int index = -1;
-        if (input.length() != 1) {
+        if (input.length() < 1) {
             return index;
         }
         char character = input.toCharArray()[0];
