@@ -17,7 +17,7 @@ public class FindAction extends Action {
         if (keyword == null || keyword.length() == 0) {
             StringBuilder builder = new StringBuilder(Constants.NO_KEYWORD);
             tasks.indexOption = MessageOptions.INDEXED_NUM;
-            for (Task task: tasks.tasks) {
+            for (Task task : tasks.tasks) {
                 builder.append(task.toString()).append(Constants.WIN_NEWLINE);
             }
             return builder.toString();
@@ -26,9 +26,10 @@ public class FindAction extends Action {
             ArrayList<Task> filtered = new ArrayList<>(tasks.tasks);
             filtered.removeIf(x -> !x.toString().contains(keyword));
             StringBuilder builder = new StringBuilder();
-            for (Task task: filtered) {
+            for (Task task : filtered) {
                 builder.append(task.toString()).append(Constants.WIN_NEWLINE);
             }
+            tasks.indexOption = MessageOptions.INDEXED_NUM;
             return result.replace(Constants.TEXT_PLACEHOLDER, builder.toString());
         }
     }
@@ -36,6 +37,10 @@ public class FindAction extends Action {
     @Override
     public void prepare(ParamNode args) {
         super.prepare(args);
-        keyword = args.thisData.toFlatString();
+        if (args.thisData == null) {
+            keyword = null;
+        } else {
+            keyword = args.thisData.toFlatString();
+        }
     }
 }

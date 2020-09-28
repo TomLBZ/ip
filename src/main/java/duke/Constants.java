@@ -65,6 +65,7 @@ public class Constants {
     public static final String WELCOME = "Hello, I'm Duke. What can I do for you?";
     public static final String HELP_PROMPT = "Use \"help [target]\" to see details :) Try \"help help\"!";
     public static final String NO_KEYWORD = "No keyword provided, listing all tasks:" + WIN_NEWLINE;
+    public static final String LIST_HEAD = "Here is the list of tasks:" + WIN_NEWLINE;
     public static final int LINE_REPETITION = 60;
     public static final int NO_INDENT = 0;
     public static final int INDENT_1 = 1;

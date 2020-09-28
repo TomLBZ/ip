@@ -3,6 +3,9 @@ package duke;
 import messages.MessageFormat;
 import messages.MessageOptions;
 import messages.MessageWrapper;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class UI {
@@ -33,13 +36,27 @@ public class UI {
         msgWrapper.show(lines, msgFormat.getMessageOptions());
     }
 
+    public void showListText(String input, MessageOptions indexOption) {
+        ArrayList<String> lines = new ArrayList<>(Arrays.asList(input.split(Constants.WIN_NEWLINE)));
+        String head = lines.get(0);
+        lines.remove(head);
+        msgFormat.removeMessageOption(MessageOptions.LINE_AFTER);
+        msgWrapper.show(head, msgFormat.getMessageOptions());
+        msgFormat.addMessageOption(MessageOptions.LINE_AFTER);
+        msgFormat.removeMessageOption(MessageOptions.LINE_BEFORE);
+        msgFormat.addMessageOption(indexOption);
+        String[] strings = new String[0];
+        strings = lines.toArray(strings);
+        msgWrapper.show(strings, msgFormat.getMessageOptions());
+        msgFormat.addMessageOption(MessageOptions.LINE_BEFORE);
+        msgFormat.removeMessageOption(indexOption);
+    }
+
     public void update(String input, TaskList tasks) {
         if (input == null || input.equals(Constants.ZERO_LENGTH_STRING)) {
             showText(input);
         } else {
-            msgFormat.addMessageOption(tasks.indexOption);
-            showText(input);
-            msgFormat.removeMessageOption(tasks.indexOption);
+            showListText(input, tasks.indexOption);
         }
         tasks.indexOption = MessageOptions.NOT_INDEXED;
     }
