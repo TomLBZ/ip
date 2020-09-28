@@ -3,16 +3,13 @@ package command.action;
 import command.ParamNode;
 import duke.Constants;
 import duke.TaskList;
-import jobs.Event;
 import jobs.Task;
 import messages.MessageOptions;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
-import java.util.stream.Collectors;
 
 public class ListAction extends Action {
 
@@ -22,6 +19,7 @@ public class ListAction extends Action {
 
     @Override
     public String act(TaskList tasks) {
+        tasks.indices = new ArrayList<>();
         StringBuilder builder = new StringBuilder();
         tasks.indexOption = MessageOptions.INDEXED_NUM;
         ArrayList<Task> displayList = new ArrayList<>(tasks.tasks);
@@ -32,6 +30,7 @@ public class ListAction extends Action {
                 for (Task task : displayList) {
                     if (date.equals(task.getDate())) {
                         builder.append(task.toString()).append(Constants.WIN_NEWLINE);
+                        tasks.indices.add(tasks.indexOf(task));
                     }
                 }
             }
@@ -46,6 +45,7 @@ public class ListAction extends Action {
             }
             for (Task task : displayList) {
                 builder.append(task.toString()).append(Constants.WIN_NEWLINE);
+                tasks.indices.add(tasks.indexOf(task));
             }
         }
         return builder.toString();
@@ -56,6 +56,8 @@ public class ListAction extends Action {
         super.prepare(args);
         int len = flattenedArgs.length;
         if (len == 0) {
+            isDesc = false;
+            isAsc = false;
             stringDate = "";
         } else {
             stringDate = flattenedArgs[0].toFlatString();
