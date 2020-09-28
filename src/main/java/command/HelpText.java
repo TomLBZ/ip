@@ -41,7 +41,8 @@ public enum HelpText {
                     "deadline [description] /by [time]"
             },
             new String[]{
-                    "1. \"deadline ddl /by 5:00pm\" >> adds a deadline with description \"ddl\" and time \"5:00pm\""
+                    "1. \"deadline ddl /by 21/9/15 1:12\" >> "
+                            + "adds a deadline with description \"ddl\" and time \"September 15 2021 1:12\""
             }),
     /**
      * The Delete.
@@ -53,7 +54,7 @@ public enum HelpText {
                     "delete [index]"
             },
             new String[]{
-                    "1. \"delete 1\" >> deletes the task with index 1 from the task list"
+                    "1. \"delete 1\" >> deletes the task with index 1 from the current list"
             }),
     /**
      * The Done.
@@ -77,7 +78,8 @@ public enum HelpText {
                     "event [description] /at [time]"
             },
             new String[]{
-                    "1. \"event e /at 7:00am\" >> adds an event with description \"e\" and time \"7:00am\""
+                    "1. \"event e /at May 13 2020 8:00\" >> "
+                            + "adds an event with description \"e\" and time \"May 13 2020 8:00\""
             }),
     FIND(
             "find",
@@ -115,7 +117,7 @@ public enum HelpText {
             new String[]{
                     "1. \"list\" >> list all added tasks",
                     "2. \"list date asc\" >> list tasks with a \"date\" field in ascending order",
-                    "3. \"list date spec Oct 5 2020\" >> list tasks with specific \"date\" field of Oct 5 2020"
+                    "3. \"list date spec Oct 5 2020\" >> list tasks with specific \"date\" field of October 5 2020"
             }),
     /**
      * The Todo.
