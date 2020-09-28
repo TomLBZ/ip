@@ -58,6 +58,15 @@ public enum HelpText {
             new String[]{
                     "1. \"event e /at 7:00am\" >> adds an event with description \"e\" and time \"7:00am\""
             }),
+    FIND(
+            "find",
+            "Find an event in the task list with the specified keyword",
+            new String[]{
+                    "find [keyword]"
+            },
+            new String[]{
+                    "1. \"find exam\" >> finds all tasks with the \"exam\" keyword from the task list"
+            }),
     HELP(
             "help",
             "Print the list of available commands, or print the details of a specified command",
