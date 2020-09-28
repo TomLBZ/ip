@@ -90,7 +90,7 @@ public class Action {
             index = Integer.parseInt(input) - 1;
         } else if (Character.isLetter(character)) {
             character = Character.toUpperCase(character);
-            index = (int)character - Constants.LETTER_OFFSET - 1;
+            index = (int) character - Constants.LETTER_OFFSET - 1;
         } else {
             index = -1;
         }

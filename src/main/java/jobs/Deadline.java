@@ -1,5 +1,6 @@
 package jobs;
-import duke.*;
+
+import duke.Constants;
 
 /**
  * The type Deadline.
@@ -20,10 +21,13 @@ public class Deadline extends Task {
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
+        getDateTime(by);
     }
 
     @Override
-    public String toString(){
-        return Constants.DDL_ICON + super.toString() + " (by: " + by + ")";
+    public String toString() {
+        String byTime = getDateTimeString(by);
+        return Constants.DDL_ICON + super.toString() + " (by: " + byTime + ")";
     }
+
 }

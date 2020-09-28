@@ -1,4 +1,5 @@
 package io;
+
 import jobs.Task;
 
 import java.io.IOException;
@@ -31,7 +32,7 @@ public class FileSaver extends IO{
     public boolean save(ArrayList<Task> tasks) {
         try {
             StringBuilder strBuilder = new StringBuilder();
-            for (Task task: tasks) {
+            for (Task task : tasks) {
                 strBuilder.append(task.toString()).append(System.lineSeparator());
             }
             if (isFileInvalid()) {

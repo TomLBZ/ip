@@ -1,6 +1,7 @@
 package command;
 
 import java.util.ArrayList;
+
 import duke.Constants;
 
 /**
@@ -57,7 +58,8 @@ public class Lexer {
             case Constants.CHAR_SPACE:
                 i++;
                 break;
-            case Constants.PARAM:
+            case Constants.PARAM: // this case is the same as the next case, thus no break
+            case Constants.PARAM_ALIAS:
                 i++;
                 String command = getCommand(inString, i);
                 i += command.length();

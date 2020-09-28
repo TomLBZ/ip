@@ -35,7 +35,7 @@ public class IO {
      * @throws IOException the io exception
      */
     protected boolean isFileInvalid()
-            throws IOException{
+            throws IOException {
         boolean isValidated = true;
         File path = new File(this.path);
         if (!path.exists() || !path.isDirectory()) {

@@ -3,6 +3,7 @@ package duke;
 import command.Command;
 import command.Parser;
 import io.Storage;
+
 import java.util.ArrayList;
 
 /**
@@ -43,7 +44,7 @@ public class Duke {
             try {
                 String fullCommand = ui.nextLine();
                 ArrayList<Command> commands = parser.parse(fullCommand);
-                for (Command c: commands) {
+                for (Command c : commands) {
                     c.execute(tasks);
                     ui.update(c.result, tasks);
                     isExit = c.isExit();

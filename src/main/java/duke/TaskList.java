@@ -18,6 +18,7 @@ public class TaskList {
      * The Index option.
      */
     public MessageOptions indexOption;
+    public ArrayList<Integer> indices;
 
     /**
      * Instantiates a new Task list.
@@ -25,6 +26,15 @@ public class TaskList {
     public TaskList() {
         tasks = new ArrayList<>();
         indexOption = MessageOptions.NOT_INDEXED;
+        indices = new ArrayList<>();
+    }
+
+    public Task get(int index) {
+        return tasks.get(indices.get(index));
+    }
+
+    public int indexOf(Task task) {
+        return tasks.indexOf(task);
     }
 
     /**

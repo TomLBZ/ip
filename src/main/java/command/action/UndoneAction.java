@@ -14,7 +14,7 @@ public class UndoneAction extends Action {
 
     @Override
     public String act(TaskList tasks) {
-        Task task = tasks.tasks.get(index);
+        Task task = tasks.get(index);
         if (task == null) {
             return Constants.INDEX_OUT;
         } else {

@@ -1,5 +1,6 @@
 package jobs;
-import duke.*;
+
+import duke.Constants;
 
 /**
  * The type To do.
@@ -16,7 +17,7 @@ public class ToDo extends Task {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return Constants.TODO_ICON + super.toString();
     }
 }

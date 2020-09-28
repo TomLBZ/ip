@@ -1,6 +1,5 @@
 package duke;
 
-import command.Help;
 import command.action.Action;
 import command.action.ByeAction;
 import command.action.ClearAction;
@@ -14,12 +13,14 @@ import command.action.TodoAction;
 import command.action.UndoneAction;
 import command.action.UnknownAction;
 import command.HelpText;
+
 import java.util.Map;
 
 /**
  * The type Constants.
  */
 public class Constants {
+
     /**
      * The constant LPAREN.
      */
@@ -32,6 +33,7 @@ public class Constants {
      * The constant PARAM.
      */
     public static final char PARAM = '/';
+    public static final char PARAM_ALIAS = '-';
     /**
      * The constant CMD_END.
      */
@@ -152,6 +154,7 @@ public class Constants {
      * The constant NUMBER_PLACEHOLDER.
      */
     public static final String NUMBER_PLACEHOLDER = "_n_";
+
     /**
      * The constant PATH.
      */
@@ -160,6 +163,7 @@ public class Constants {
      * The constant FILENAME.
      */
     public static final String FILENAME = "duke.txt";
+
     /**
      * The constant BYE.
      */
@@ -204,6 +208,7 @@ public class Constants {
      * The constant UNKNOWN.
      */
     public static final String UNKNOWN = "unknown";
+
     /**
      * The constant INDEX_OUT.
      */
@@ -242,6 +247,16 @@ public class Constants {
      * The constant HELP_PROMPT.
      */
     public static final String HELP_PROMPT = "Use \"help [target]\" to see details :) Try \"help help\"!";
+    public static final String[] DATE_PATTERNS = {
+            "yyyy-MMM-dd", "yyyy-MMM-d", "yyyy-MM-dd", "yyyy-MM-d", "yyyy-M-dd", "yyyy-M-d",
+            "yy-MMM-dd", "yy-MMM-d", "yy-MM-dd", "yy-MM-d", "yy-M-dd", "yy-M-d",
+            "MMM-dd-yyyy", "MMM-d-yyyy", "MM-dd-yyyy", "MM-d-yyyy", "M-dd-yyyy", "M-d-yyyy",
+            "MMM-dd-yy", "MMM-d-yy", "MM-dd-yy", "MM-d-yy", "M-dd-yy", "M-d-yy",
+            "dd-MMM-yyyy", "d-MMM-yyyy", "dd-MM-yyyy", "d-MM-yyyy", "dd-M-yyyy", "d-M-yyyy",
+            "dd-MMM-yy", "d-MMM-yy", "dd-MM-yy", "d-MM-yy", "dd-M-yy", "d-M-yy"};
+    public static final String[] TIME_PATTERNS = {"HH:mm:ss", "H:mm:ss", "HH:m:ss", "HH:mm:s", "H:m:ss",
+            "HH:m:s", "H:mm:s", "H:m:s", "HH:mm", "H:mm", "HH:m", "H:m", "HH", "H", ""};
+
     /**
      * The constant LINE_REPETITION.
      */
@@ -266,6 +281,7 @@ public class Constants {
      * The constant LETTER_OFFSET.
      */
     public static final int LETTER_OFFSET = 64;
+
     /**
      * The constant actionMap.
      */
@@ -302,11 +318,13 @@ public class Constants {
     public static final Map<String, String> paramMap = Map.ofEntries(
             Map.entry(DEADLINE, "by"),
             Map.entry(EVENT, "at"));
+    public static final Map<String, String[]> optionalParamMap = Map.ofEntries(
+            Map.entry(LIST, new String[]{"date", "asc", "desc", "spec"}));
     /**
      * The constant messageMap.
      */
     public static final Map<String, String> messageMap = Map.ofEntries(
-            Map.entry(BYE,"Bye. Hope to see you again soon!"),
+            Map.entry(BYE, "Bye. Hope to see you again soon!"),
             Map.entry(CLEAR, "Nice! I've cleared everything in the list."),
             Map.entry(DEADLINE, Constants.ADDED + Constants.CHANGED),
             Map.entry(DELETE, Constants.REMOVED + Constants.CHANGED),

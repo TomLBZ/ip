@@ -17,7 +17,7 @@ public class DeleteAction extends Action {
         if (index < 0 || index >= tasks.tasks.size()) {
             return Constants.INDEX_OUT;
         }
-        Task task = tasks.tasks.get(index);
+        Task task = tasks.get(index);
         String result = super.act(tasks);
         tasks.tasks.remove(task);
         return replaceStrings(result, task.toString(), tasks.tasks.size());
