@@ -22,6 +22,7 @@ public class HelpAction extends Action {
     @Override
     public String act(TaskList tasks) {
         if (isDetailed && helpText != null) {
+            isDetailed = false;
             return helpText.toString();
         } else {
             StringBuilder builder = new StringBuilder();
